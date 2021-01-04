@@ -1,11 +1,14 @@
 <template>
-  <div id="app">
+  <v-app id="app">
+    <Header/>
+    <h1>This is app.vue</h1> 
     <p>{{ message }}</p>
     <Top/> 
-  </div>
+  </v-app>
 </template>
 
 <script>
+import Header from "./components/Header"; 
 import Top from "./components/Top";
 
 export default {
@@ -15,6 +18,7 @@ export default {
     }
   },
     components: {
+    Header,
     Top,
   }
 }
