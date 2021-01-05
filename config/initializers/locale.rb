@@ -1,1 +1,2 @@
-Rails.application.config.i18n.default_locale = :ja
+    # デフォルトのlocaleを日本語(:ja)にする
+    Rails.application.config.i18n.default_locale = :ja
