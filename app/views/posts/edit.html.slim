@@ -1,18 +1,5 @@
 h1 投稿編集
 
 = link_to '投稿一覧', posts_path
-
-= form_with model: @post, local: true do |f|
-  .form-textarea
-    =f.label :body
-    =f.text_area :body, rows: 10
-  .form-input
-    =f.label :images
-    =f.text_area :images
-  .form-select
-    =f.label :visit_day
-    =f.date_select :visit_day
-    / .uppercase.px-8.py-2.rounded-full.bg-green-600.text-blue-50.max-w-max.shadow-sm.hover:shadow-md
-  =f.submit nil
-
+= render 'shared/form'
 = link_to '戻る', :back 
