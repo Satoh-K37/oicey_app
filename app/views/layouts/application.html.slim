@@ -6,9 +6,7 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    - # フォントとアイコンの読み込み
-    link[href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"]
-    link[href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet"]
+    link[href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"]
   body
     - if flash.notice.present?
       .alert.alert-success= flash.notice
