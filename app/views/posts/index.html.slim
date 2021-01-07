@@ -16,6 +16,8 @@ table
         td= link_to post.body ,post_path(post)
         td= post.visit_day
         td
-          = link_to '編集', edit_post_path(post)
-          br
-          = link_to '削除', post, method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" }
+          button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
+            = link_to '編集', edit_post_path(post)
+          button.bg-red-500.hover:bg-red-700.text-white.font-bold.py-2.px-4.rounded
+            / = link_to '削除', post, method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" }
+            = link_to '削除', post, method: :delete, remote: true, data: { confirm: "投稿を削除します。よろしいですか？" }
