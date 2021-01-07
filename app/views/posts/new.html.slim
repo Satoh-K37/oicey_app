@@ -1,5 +1,6 @@
 h1 新規投稿
 
 = link_to '投稿一覧', posts_path
-= render 'shared/form'
+/ ローカル変数を明示することで、再利用性を高める
+= render partial: 'shared/form', locals:{ post:@post }
 = link_to '戻る', :back 
