@@ -5,11 +5,10 @@ html
       | AppName
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     link[href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"]
   / header.text-gray-600.body-font
   body
     - if flash.notice.present?
       .alert.alert-success= flash.notice
     = yield
-    / ß
