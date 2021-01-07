@@ -41,7 +41,7 @@ Things you may want to cover:
 * Ruby on Rails: 5.2.4
 * MySQL: 5.7
 * Vue: 2.6.12
-* vuetify: 2.4.0
+* TailWindCSS
 * Docker: 19.03.5
 * Docker-compose 1.25.4
 
