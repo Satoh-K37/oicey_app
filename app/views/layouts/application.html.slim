@@ -11,6 +11,8 @@ html
     link[href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"]
   / header.text-gray-600.body-font
   body
+    .header.grid-cols-1.bg-yellow-500
+      p Oicey 
     - if flash.notice.present?
       .alert.alert-success= flash.notice
     = yield
