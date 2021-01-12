@@ -70,5 +70,5 @@ gem 'html2slim'
 
 
 ############ Back end ############
-
+gem 'devise'
 ############ Back end ############
