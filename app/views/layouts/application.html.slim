@@ -11,16 +11,8 @@ html
     link[href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"]
   / header.text-gray-600.body-font
   body
-    .header.grid-cols-1.bg-yellow-500
-      nav
-        li = link_to 'Oicey', root_path
-        - if user_signed_in?
-          / li = link_to 'プロフィール', users_show_path
-          li = link_to 'ログアウト', destroy_user_session_path, method: :delete
-          
-        - else
-          li = link_to 'サインアップ', new_user_registration_path
-          li = link_to 'ログイン', new_user_session_path
+    = render partial: 'shared/header'
+    
     - if flash.notice.present?
       .alert.alert-success= flash.notice
     - else
