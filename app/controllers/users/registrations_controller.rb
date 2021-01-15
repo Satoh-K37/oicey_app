@@ -3,8 +3,19 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
 
+    def profile_edit
+    end
+
+    def profile_update
+      current_user.assign_attributes(account_update_params)
+      if current_user.save
+        redirect_to profile_path(current_user), notice: 'プロフィールを更新しました'
+      else
+        render "profile_edit"
+      end
+    end
   # GET /resource/sign_up
   # def new
   #   super
@@ -20,7 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # PUT /resource
+  # # PUT /resource
   # def update
   #   super
   # end
@@ -41,9 +52,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
+
+
   # アカウント編集後、プロフィール画面に移動する
   def after_update_path_for(resource)
-    user_path(id: current_user.id)
+    plofile_path(id: current_user.id)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -52,9 +65,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+    devise_parameter_sanitizer.permit(:account_update, keys: [id: current_user.id])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
