@@ -3,6 +3,8 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+
+
   # def edit
   #   # super
   #   @user = current_user
@@ -22,6 +24,14 @@ class UsersController < ApplicationController
   #     render :profile_edit
   #   end
   # end
+  def destroy
+    # セッションに保存された情報を削除
+    reset_session
+    # Welcomeページに遷移
+    # とりあえず新規登録ページに遷移するようにしてる。Welcomeページが完成したらそっちに遷移させる
+    # redirect_to root_path, notice: 'ログアウトしました'
+    redirect_to sign_in_path, notice: 'ログアウトしました'
+  end
 
   # private
 
