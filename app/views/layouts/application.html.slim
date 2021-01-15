@@ -12,9 +12,9 @@ html
   / header.text-gray-600.body-font
   body
     = render partial: 'shared/header'
-    
+
     - if flash.notice.present?
-      .alert.alert-success= flash.notice
+      .alert.alert-success=flash.notice
     - else
-      .alert.alert-danger= flash.alert
+      .alert.alert-danger=flash.alert
     = yield

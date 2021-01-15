@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_12_134240) do
+ActiveRecord::Schema.define(version: 2021_01_15_052310) do
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "body"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 2021_01_12_134240) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "oicey_id", null: false
+    t.string "name", null: false
+    t.string "profile_image"
+    t.text "self_introduction"
+    t.string "sex", default: "0", null: false
+    t.integer "age"
+    t.integer "birthday"
+    t.integer "birthplace_id"
+    t.integer "residence_id"
+    t.boolean "status", default: false, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
