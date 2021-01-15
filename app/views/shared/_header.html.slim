@@ -2,6 +2,7 @@
       nav
         li = link_to 'Oicey', root_path
         - if user_signed_in?
+          li = link_to 'プロフィール',profile_path(current_user)
           li = link_to 'ログアウト', destroy_user_session_path, method: :delete
           
         - else

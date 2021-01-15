@@ -2,17 +2,22 @@ Rails.application.routes.draw do
   # get 'users/show'
   root to: 'posts#index'
     
-  resources :users, only: [:show]
+  resources :users
+  resources :users, only: [:show], as: 'profile'
   
   
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
-    :sessions => 'users/sessions'   
+    :sessions => 'users/sessions'
+    # ,
+    # :users => 'users'
   } 
 
   devise_scope :user do
-    get "sign_in", :to => "users/sessions#new"
-    get "sign_out", :to => "users/sessions#destroy" 
+    get 'sign_in', :to => 'users/sessions#new'
+    get 'sign_out', :to => 'users/sessions#destroy'
+    get 'profile_edit', :to => 'users/registrations#profile_edit', as: 'profile_edit'
+    patch 'profile_update', to: 'users/registrations#profile_update', as: 'profile_update'
   end
   resources :posts
   # get 'home/index'

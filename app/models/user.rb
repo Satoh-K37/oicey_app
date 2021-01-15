@@ -13,4 +13,6 @@ class User < ApplicationRecord
   # 空欄でもOKだけど、200文字まで
   validates :self_introduction, length: { maximum: 200}
 
+
+
 end
