@@ -4,7 +4,7 @@
       p HOME
       .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
         .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-10
-          .flex.flex-wrap.-mx-10.mb-20
+          .flex.flex-wrap.-mx-10.mb-4
             - @posts.each do |post|
               tr
                 td= link_to post.body ,post_path(post)

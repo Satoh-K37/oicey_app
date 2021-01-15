@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   end
 
 
-
   # def edit
   #   # super
   #   @user = current_user
