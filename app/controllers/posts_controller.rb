@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit,:update,:destroy]
+  before_action :set_post, only: [:edit,:update,:destroy]
 
   def timeline
 
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    # @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def new
