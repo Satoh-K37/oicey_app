@@ -5,18 +5,17 @@
       .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-8.mb-4.max-w-lg
         .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-2
           .flex.flex-wrap.-mx-3.mb-6
-          
-            = form_for current_user, url: {action: 'profile_update'} do |f|
-              .field
-                = f.label :name
-                br
-                = f.text_field :name, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-              .field
-                = f.label :self_introduction
-                br
-                = f.text_area :self_introduction, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-              .actions
-                button.px-4.pt-3.pb-2.bg-white.text-gray-700.font-medium.py-1.px-4.border.border-gray-400.rounded-lg.tracking-wide.mr-1.hover:bg-gray-100
-                  =f.submit 'プロフィールを編集する'
+          = form_for current_user, url: {action: 'profile_update'} do |f|
+            .field
+              = f.label :name
+              br
+              = f.text_field :name, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+            .field
+              = f.label :self_introduction
+              br
+              = f.text_area :self_introduction, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+            .actions
+            button.px-4.pt-3.pb-2.bg-white.text-gray-700.font-medium.py-1.px-4.border.border-gray-400.rounded-lg.tracking-wide.mr-1.hover:bg-gray-100
+              =f.submit 'プロフィールを編集する'
     = render partial: 'shared/side'
   = render partial: 'shared/fotter'

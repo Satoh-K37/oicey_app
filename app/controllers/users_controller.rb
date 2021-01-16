@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def show
+    # プロフィール情報
     @user = current_user
+    # 自身の投稿一覧
+    @myposts = current_user.posts.all
   end
 
 
