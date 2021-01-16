@@ -1,7 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit,:update,:destroy]
 
+  def timeline
+
+  end
+
   def index
+    # ログインしているユーザーの投稿のみを表示する
+    # @posts = current_user.posts.all
     @posts = Post.all
   end
 
