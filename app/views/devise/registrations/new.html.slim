@@ -1,32 +1,38 @@
-h2
-  | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :oicey_id
-    br
-    = f.text_field :oicey_id, autofocus: true
-  .field
-    = f.label :name
-    br
-    = f.text_field :name, autofocus: true
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-8.mb-4.max-w-lg
+  .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-2
+    .flex.flex-wrap.-mx-3.mb-6
+      h2.px-10.pt-2.-mx-3.mb-6
+        | Sign up
+
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        p
+        .field
+          = f.label :oicey_id
+          br
+          = f.text_field :oicey_id, autofocus: true, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+        .field
+          = f.label :name
+          br
+          = f.text_field :name, autofocus: true,class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+        .field
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+        .field
+          = f.label :password
+          - if @minimum_password_length
+            em
+              | (
+              = @minimum_password_length
+              |  characters minimum)
+          br
+          = f.password_field :password, autocomplete: "new-password", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+        .field
+          = f.label :password_confirmation
+          br
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+        .actions.px-20.pt-10
+          = f.submit "SIGN UP"
+    = render "devise/shared/links"
+= render "devise/shared/fotter"

@@ -1,18 +1,25 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-8.mb-4.max-w-lg
+  .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-2
+    .flex.flex-wrap.-mx-3.mb-6
+      h2.px-10.pt-2.-mx-3.mb-6
+        | Log in
+        p
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+        .field
+          = f.label :password
+          br
+          = f.password_field :password, autocomplete: "current-password", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            = f.label :remember_me
+        .actions.px-20.pt-5
+          = f.submit "LOGIN"
+          br
+    = render "devise/shared/links"
+
+= render "devise/shared/fotter"
