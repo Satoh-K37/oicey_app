@@ -1,9 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit,:update,:destroy]
-
-  def timeline
-
-  end
+  before_action :set_post, only: [:edit,:destroy]
 
   def index
     # ログインしているユーザーの投稿のみを表示する
@@ -30,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    # post = Post.find(params[:id])
+    post = Post.find(params[:id])
     post.update!(post_params)
     redirect_to posts_url, notice: "投稿を編集しました"
   end
