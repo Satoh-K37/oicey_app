@@ -16,6 +16,7 @@ ja:
           body: 本文
           images: 画像
           visit_day: 訪問日
+          tag_list: タグ
           created_at: 投稿日時
           updated_at: 更新日時
       user:
