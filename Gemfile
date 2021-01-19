@@ -74,4 +74,6 @@ gem 'devise'
 # deviseの日本語化
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+# タグ機能
+gem 'acts-as-taggable-on', '~> 7.0'
 ############ Back end ############
