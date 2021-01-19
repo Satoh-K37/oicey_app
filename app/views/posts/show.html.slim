@@ -37,6 +37,12 @@
                     = Post.human_attribute_name(:updated_at)
                   td.border.border-green-600
                     = @post.updated_at
+                tr
+                  th.border.border-green-600
+                    = Post.human_attribute_name(:tag_list)
+                  - @mytags.each do |tag|
+                  td.border.border-green-600
+                    = @post.tag_list.map { |tag| "#{tag}" }.join(' ')
           - if current_user.id == @post.user_id
             button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
               = link_to '編集',  edit_post_path

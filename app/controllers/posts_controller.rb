@@ -5,10 +5,14 @@ class PostsController < ApplicationController
     # ログインしているユーザーの投稿のみを表示する
     # @posts = current_user.posts.all
     @posts = Post.all
+    # タグ一覧表示(20個まで)
+    @tags = Post.tag_counts_on(:tags).most_used(20)
   end
 
   def show
     @post = Post.find(params[:id])
+    # 投稿に紐付くタグの表示
+    @mytags = @post.tag_counts_on(:tags)
   end
 
   def new
@@ -46,7 +50,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:body, :images, :visit_day)
+    params.require(:post).permit(:body, :images, :visit_day, :tag_list)
   end
 
 end
