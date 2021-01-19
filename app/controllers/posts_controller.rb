@@ -5,8 +5,8 @@ class PostsController < ApplicationController
     # ログインしているユーザーの投稿のみを表示する
     # @posts = current_user.posts.all
     @posts = Post.all
-    # タグ一覧表示(20個まで)
-    @tags = Post.tag_counts_on(:tags).most_used(20)
+    # タグ一覧表示(もっとも使われているタグを10個まで表示する)
+    @tags = Post.tag_counts_on(:tags).most_used(10)
   end
 
   def show
