@@ -25,5 +25,19 @@ describe 'Post機能', type: :system do
       end
     end
 
+    context 'ユーザーBがログインしている時' do
+      before do
+        user_a = FactoryBot.create(:user, oicey_id: 'oicey_testB', name: ' ユーザーB', email: 'b@test.com')
+        # ユーザーAでログイン
+        visit new_user_session_path
+        fill_in 'メールアドレス', with: 'b@test.com'
+        fill_in 'パスワード', with: 'password'
+        click_button 'LOGIN'
+      end
+    
+
+    end
+
+
   end
 end
