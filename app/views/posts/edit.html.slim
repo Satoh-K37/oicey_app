@@ -1,7 +1,10 @@
 .flex-col
-  .grid.h-screen.grid.grid-cols-6
+  .grid.h-screen.grid.grid-cols-6	  
     main.col-span-5.bg-gray-100
-      h1 投稿編集
+      - if @post.errors.present?
+        ul#error_explanation
+          - @post.errors.full_messages.each do |message|
+            li = message
       / ローカル変数を明示することで、再利用性を高める
       = render partial: 'shared/form', locals:{ post:@post }
       = link_to '戻る', :back 
