@@ -19,7 +19,8 @@
               br
               = f.text_area :self_introduction, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
             .actions
-            button.px-4.pt-3.pb-2.bg-white.text-gray-700.font-medium.py-1.px-4.border.border-gray-400.rounded-lg.tracking-wide.mr-1.hover:bg-gray-100
-              =f.submit 'プロフィールを編集する'
+            .-mr-2.px-4.pt-4.pb-5.text-right
+              button.px-4.pt-3.pb-2.bg-white.text-gray-700.font-medium.py-1.px-4.border.border-gray-400.rounded-lg.tracking-wide.mr-1.hover:bg-gray-100
+                =f.submit 'プロフィールを編集する'
     = render partial: 'shared/side'
   = render partial: 'shared/fotter'
