@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 
   
   resources :relationships, only: [:create, :destroy]
-  resources :users
+  resources :users do
+    get :followings, on: :member
+    get :followers, on: :member
+  end
+
   resources :users, only: [:show], as: 'profile'
   resources :posts
   
