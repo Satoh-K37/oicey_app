@@ -4,19 +4,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :
   
   #==============ユーザーがフォローしているユーザーとのアソシエーション================
-  # Userが中間テーブルの外部キーuser_idにアクセスすることを可能にするアソシエーションを宣言している
-  has_many :relationships, foreign_key: "user_id", 
-                                    dependent: :destroy
-  # Userが中間テーブルfollow_idを通して、followingモデルにアクセスすることを可能にするアソシエーションを宣言している
+  has_many :relationships,  foreign_key: "user_id", 
+                            dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
 #============================================================================
 #==============ユーザーをフォローしてくれてるユーザーとのアソシエーション==============
-  # 架空モデルpassive_relationshipsの外部キーfollow_idへアクセスすることを可能にするアソシエーションを宣言している
-  # class_name: "Relationship",で参照元のモデルを指定している
-  has_many :passive_relationships, class_name: "Relationship",
+  has_many :passive_relationships,  class_name: "Relationship",
                                     foreign_key: "follow_id",
                                     dependent: :destroy
-  # Userがpassive_relationshipsのuser_idを通してfollowersへアクセスする事を可能にするアソシエーションの宣言をしている
   has_many :followers, through: :passive_relationships, source: :user
 #===========================================================================
 

@@ -1,0 +1,14 @@
+  - unless current_user == @user
+  / フォロー解除ボタン
+  / ログインしているユーザーが相手ユーザーをフォローしているかを確認
+  - if current_user.following?(@user)
+    / フォローしている場合
+    = form_with model: @relationship, url: relationship_path, method: :delete, local: true do |f|
+      = f.hidden_field :follow_id, value: @user.id
+      = f.submit "食べトモをやめる"
+  / フォローボタン
+  / フォローしていない場合
+  - else
+    = form_with model: @set_relationship, url: relationships_path, local: true do |f|
+      = f.hidden_field :follow_id, value: @user.id
+      = f.submit "食べトモになる"

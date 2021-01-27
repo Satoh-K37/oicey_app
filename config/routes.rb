@@ -15,9 +15,13 @@ Rails.application.routes.draw do
     get 'profile_edit', :to => 'users/registrations#profile_edit', as: 'profile_edit'
     patch 'profile_update', to: 'users/registrations#profile_update', as: 'profile_update'
   end
+
+  
+  resources :relationships, only: [:create, :destroy]
   resources :users
   resources :users, only: [:show], as: 'profile'
   resources :posts
+  
   # get 'home/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

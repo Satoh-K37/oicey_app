@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   def show
     # プロフィール情報
-    @user = current_user
+    # @user = current_user
+    # フォローボタン
+    @user = User.find(params[:id])
+    @relationship = current_user.relationships.find_by(follow_id: @user.id)  
+    @set_relationship = current_user.relationships.new
     # 自身の投稿一覧
     @myposts = current_user.posts.all
   end
