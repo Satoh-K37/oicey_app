@@ -1,0 +1,5 @@
+h2 フォロワー
+
+- @users.each do |user|
+  hr
+  = link_to user.name, user_path(user.id)

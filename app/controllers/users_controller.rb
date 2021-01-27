@@ -10,6 +10,15 @@ class UsersController < ApplicationController
     @myposts = current_user.posts.all
   end
 
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings.all
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.all
+  end
 
   # def edit
   #   # super
