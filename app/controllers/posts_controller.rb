@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     # 投稿に紐付くタグの表示
     @mytags = @post.tag_counts_on(:tags)
+
   end
 
   def new

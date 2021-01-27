@@ -10,11 +10,26 @@
             br = @user.oicey_id
             / br = @user.email
             br = @user.self_introduction
-          
+            = render partial: 'relationships/follow_form', user: @user
+            / - unless current_user == @user
+            / - if current_user.following?(@user)
+            /   / フォローしている場合
+            /   = form_with model: @relationship, url: relationship_path, method: :delete, local: true do |f|
+            /     = f.hidden_field :follow_id, value: @user.id
+            /     = f.submit "フォローを解除する"
+            / / フォローボタン
+            / / フォローしていない場合
+            / - else
+            /   = form_with model: @set_relationship, url: relationships_path, local: true do |f|
+            /     = f.hidden_field :follow_id, value: @user.id
+            /     = f.submit "フォロー"
+
           .-mr-2.px-4.pt-4.pb-5.text-right
             button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
               = link_to 'プロフィール編集', profile_edit_path(current_user) 
-
+          
+          / = render partial: 'shared/follow_form', user: @user
+          
       .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
         .w-full.max-w-xl.bg-white.rounded-lg.px-4
           p MyPost

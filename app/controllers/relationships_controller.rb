@@ -1,24 +1,29 @@
 class RelationshipsController < ApplicationController
-  before_action :set_user
+  before_action :set_user, only: [:create, :destroy]
 
   # フォローするアクション
   # Userモデルファイルで定義したfollow(other_user)インスタンスメソッドを使用
   def create
     following = current_user.follow(@user)
     if following.save
-      redirect_to @user, notice: "フォローしました"
+      flash[:success] = 'ユーザーをフォローしました'
+      redirect_to @user
     else
-      redirect_to @user, notice: "フォローできませんでした"
+      flash.now[:alert] = 'ユーザーのフォローに失敗しました'
+      redirect_to @user
+    end
   end
 
   # フォロー解除するアクション
   # Userモデルファイルで定義したunfollow(other_user)インスタンスメソッドを使用
   def destroy
-    following = current_user.unfollow(@user)
-    if following.destroy
-      redirect_to @user, notice: "フォロー解除しました"
+    @following = current_user.unfollow(@user)
+    if @following.destroy
+      flash[:success] = 'ユーザーのフォローを解除しました'
+      redirect_to @user
     else
-      redirect_to @user, notice: "ユーザーのフォロー解除に失敗しました"
+      flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
+      redirect_to @user
     end
   end
 
