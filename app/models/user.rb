@@ -1,19 +1,4 @@
 class User < ApplicationRecord
-  has_many :posts, dependent: :destroy
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :
-  
-  #==============ユーザーがフォローしているユーザーとのアソシエーション================
-  has_many :relationships,  foreign_key: "user_id", 
-                            dependent: :destroy
-  has_many :followings, through: :relationships, source: :follow
-#============================================================================
-#==============ユーザーをフォローしてくれてるユーザーとのアソシエーション==============
-  has_many :passive_relationships,  class_name: "Relationship",
-                                    foreign_key: "follow_id",
-                                    dependent: :destroy
-  has_many :followers, through: :passive_relationships, source: :user
-#===========================================================================
 
   devise :database_authenticatable, :registerable,
         # :confirmable,(登録時に確認用のメールを送ってくれるが今のところ邪魔なのでコメントアウト)
@@ -22,8 +7,27 @@ class User < ApplicationRecord
         # PWリセット, ログインしたままにする, サインイン回数, バリデーション
         # プロフィール検索時に使うので必須
   
+  has_many :posts, dependent: :destroy
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :
+  
+  #==============ユーザーがフォローしているユーザーとのアソシエーション================
+  has_many :relationships,  foreign_key: "user_id", 
+                            dependent: :destroy
+  #  フォローしているユーザーの一覧を取り出すときに使う
+  has_many :followings, through: :relationships, source: :follow
+#============================================================================
+#==============ユーザーをフォローしてくれてるユーザーとのアソシエーション==============
+  has_many :passive_relationships,  class_name: "Relationship",
+                                    foreign_key: "follow_id",
+                                    dependent: :destroy
+  #  フォローされてるユーザーの一覧を取り出すときに使う
+  has_many :followers, through: :passive_relationships, source: :user
+#===========================================================================
+  
 #==============バリデーション関連==============
-  validates :oicey_id, presence: true
+  #　OiceyIDは英数字15文字までアルファベットと数字以外は弾くようにしたい。（＊％＄＃＠＾！？とか）
+  validates :oicey_id, presence: true, length:  { maximum: 15 }
   # 名前がないと不便なので必須かつ30文字以内
   validates :name, presence: true, length:  { maximum: 30 }
   # 空欄でもOKだけど、200文字まで
@@ -31,7 +35,7 @@ class User < ApplicationRecord
 #===========================================================================
   
 #==============マッチング関連のインスタンスメソッドを定義==============
-  # Userが@userのことをマッチングしているかどうかを確かめる。マッチングボタンを表示する時の条件分岐で使う。
+  # Userが@userのことをフォローしているかどうかを確かめる。マッチングボタンを表示する時の条件分岐で使う。
   def following?(other_user)
     self.followings.include?(other_user)
   end
@@ -50,7 +54,18 @@ class User < ApplicationRecord
     relationship = self.relationships.find_by(follow_id: other_user.id)
     relationship.destroy if relationship
   end
-#===========================================================================
 
+  # マッチング判定
+  def matchers
+    # それぞれのメソッドを実行し、フォローしている&&フォローされているユーザーを確認する
+    followings & followers
+  end
+  # 
+  # def matchers
+  #   User.where(id: passive_relationships.select(:follower_id))
+  #    .where(id: active_relationships.select(:following_id))
+  # end
+
+#===========================================================================
 
 end

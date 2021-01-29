@@ -10,12 +10,16 @@
             br = @user.oicey_id
             / br = @user.email
             br = @user.self_introduction
-            = link_to "フォロー: #{@user.followings.count}", followings_user_path(@user.id)
+            = link_to "気になるしたユーザー: #{@user.followings.count}", followings_user_path(@user.id)
             = "／"
-            = link_to "フォロワー: #{@user.followers.count}", followers_user_path(@user.id)
-              / マイページを見たときはプロフィール編集が表示され、他のユーザーのページを見たときはフォローボタンが表示されるようにしたい
+            = link_to "気になるされたユーザー: #{@user.followers.count}", followers_user_path(@user.id)
+            = "／"
+            = link_to "マッチングしたユーザー" , matchings_user_path(@user.id)
+            
+            hr
             = render partial: 'relationships/follow_form', user: @user
-
+            hr
+          - if current_user == @user
             .-mr-2.px-4.pt-4.pb-5.text-right
               button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
                 = link_to 'プロフィール編集', profile_edit_path(current_user) 
