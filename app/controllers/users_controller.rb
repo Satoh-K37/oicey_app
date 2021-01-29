@@ -1,57 +1,67 @@
 class UsersController < ApplicationController
+
   def show
     # プロフィール情報
     # @user = current_user
     # フォローボタン
     @user = User.find(params[:id])
+    # 
     @relationship = current_user.relationships.find_by(follow_id: @user.id)  
     @set_relationship = current_user.relationships.new
     # 自身の投稿一覧
     @myposts = current_user.posts.all
   end
 
+  # フォローしている人を取得（フォロー）。気になるした人っていう使い方もできそう。
   def followings
     @user = User.find(params[:id])
     @users = @user.followings.all
   end
 
+  # フォローしてくれている人を取得（フォロワー）。気になるされた人っていう使い方もできそう
   def followers
     @user = User.find(params[:id])
     @users = @user.followers.all
   end
 
-  # def edit
-  #   # super
-  #   @user = current_user
-  # end
+  # マッチングしているユーザーを取得する
+  def matchings
+    # user.rbのmatchersをcurrent_userでログインしているユーザーがフォローしている、フォローされているユーザーを取得し、match_usersに格納している
+    @match_users = current_user.matchers
+  end
 
-  # # # PUT /resource
-  # def update
-  #   # super
-  #       # 対象のユーザーをidで検索して、@userに格納
-  #   # 共通化済み　set_user
-  #   #　user_paramsの値に変更があった場合にifの処理に入る。それ以外はelseに入る。
-  #   if @user.update(user_params)
-  #     # 更新に成功したら、ユーザー詳細ページに遷移する
-  #     redirect_to profile_path(current_user), notice: '更新しました'
-  #   else
-  #     # 更新に失敗した場合は再度、編集のページを表示させる
-  #     render :profile_edit
-  #   end
-  # end
+  def edit
+    # super
+    @user = current_user
+  end
+
+  # # PUT /resource
+  def update
+    # super
+        # 対象のユーザーをidで検索して、@userに格納
+    # 共通化済み　set_user
+    #　user_paramsの値に変更があった場合にifの処理に入る。それ以外はelseに入る。
+    if @user.update(user_params)
+      # 更新に成功したら、ユーザー詳細ページに遷移する
+      redirect_to profile_path(current_user), notice: '更新しました'
+    else
+      # 更新に失敗した場合は再度、編集のページを表示させる
+      render :profile_edit
+    end
+  end
+  
   def destroy
     # セッションに保存された情報を削除
     reset_session
     # Welcomeページに遷移
     # とりあえず新規登録ページに遷移するようにしてる。Welcomeページが完成したらそっちに遷移させる
-    # redirect_to root_path, notice: 'ログアウトしました'
     redirect_to sign_in_path, notice: 'ログアウトしました'
   end
 
-  # private
+  private
 
-  # def user_params
-  #   params.require(:user).permit(:name, :self_introduction)
-  # end
+  def user_params
+    params.require(:user).permit(:name, :self_introduction)
+  end
 
 end

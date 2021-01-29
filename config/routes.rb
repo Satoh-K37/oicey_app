@@ -17,13 +17,14 @@ Rails.application.routes.draw do
   end
 
   
-  resources :relationships, only: [:create, :destroy]
+  
   resources :users do
     get :followings, on: :member
     get :followers, on: :member
+    get :matchings, on: :member
   end
-
   resources :users, only: [:show], as: 'profile'
+  resources :relationships, only: [:create, :destroy]
   resources :posts
   
   # get 'home/index'
