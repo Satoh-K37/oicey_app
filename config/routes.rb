@@ -22,8 +22,9 @@ Rails.application.routes.draw do
     get :followings, on: :member
     get :followers, on: :member
     get :matchings, on: :member
+    get :show, as: 'profile', on: :member
   end
-  resources :users, only: [:show], as: 'profile'
+  # resources :users, only: [:show], as: 'profile'
   resources :relationships, only: [:create, :destroy]
   resources :posts
   
