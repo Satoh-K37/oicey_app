@@ -9,7 +9,12 @@
                 tr
                   td= link_to post.body ,post_path(post)
                   td= post.visit_day
-                  td
+                    / - if current_user
+                  / - if post.favorited_by?(current_user)
+                  /   td= link_to 'お気に入り解除:', post.favorites.count, post_favorites_path(post.id), method: :delete 
+                  / - else 
+                  /   td= link_to 'お気に入り登録:', post.favorites.count, post_favorites_path(post.id), method: :post 
+                  / td
                   - if current_user.id == post.user_id
                     button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
                       = link_to '編集', edit_post_path(post)
