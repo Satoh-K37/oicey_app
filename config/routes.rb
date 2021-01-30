@@ -22,10 +22,16 @@ Rails.application.routes.draw do
     get :followings, on: :member
     get :followers, on: :member
     get :matchings, on: :member
+    get :show, as: 'profile', on: :member
+    # resources :relationships, only: [:create, :destroy]
   end
-  resources :users, only: [:show], as: 'profile'
+  # resources :users, only: [:show], as: 'profile'
   resources :relationships, only: [:create, :destroy]
-  resources :posts
+  resources :posts do
+    # postのidを取ってくるためにネストしている
+    resource :likes, only: [:create, :destroy]
+  end
+
   
   # get 'home/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

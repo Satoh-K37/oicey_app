@@ -16,7 +16,7 @@
                   th.border.border-green-600 
                     = User.human_attribute_name(:name)
                   td.border.border-green-600
-                    = link_to @post.user.name,  profile_path(@post.user.id)
+                    = link_to @post.user.name,  profile_user_path(@post.user.id)
                 tr
                   th.border.border-green-600
                     = Post.human_attribute_name(:body)
