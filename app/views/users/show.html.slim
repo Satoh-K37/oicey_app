@@ -42,6 +42,11 @@
                   .-mr-2.px-4.pt-4.pb-5.text-right
                     button.bg-red-500.hover:bg-red-700.text-white.font-bold.py-2.px-4.rounded
                       = link_to '削除', myposts, method: :delete, remote: true, data: { confirm: "投稿を削除します。よろしいですか？" }
-              
+
+      / .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
+      /   .w-full.max-w-xl.bg-white.rounded-lg.px-4
+      /     p いいね一覧
+      /     - @likes.each do |like|
+            
     = render partial: 'shared/side'
   = render partial: 'shared/fotter'
