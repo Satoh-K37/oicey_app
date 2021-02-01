@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     @set_relationship = current_user.relationships.new
     # 自身の投稿一覧
     @myposts = current_user.posts.all
+    # ユーザーがいいねした投稿を取得
+    @like_posts = @user.like_posts
   end
 
   # フォローしている人を取得（フォロー）。気になるした人っていう使い方もできそう。

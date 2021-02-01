@@ -9,6 +9,15 @@
                 tr
                   td= link_to post.body ,post_path(post)
                   td= post.visit_day
+                  / td= render partial: 'likes/_like', post: post
+                  - if user_signed_in?
+                    - if post.liked_by?(current_user)
+                      td= link_to 'いいね済み', post_likes_path(post.id), method: :delete
+                      td= post.likes.count
+                      / , post.likes.count
+                    - else 
+                      td= link_to 'いいね', post_likes_path(post.id), method: :post
+                      td= post.likes.count
                   td
                   - if current_user.id == post.user_id
                     button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded

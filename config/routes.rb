@@ -26,7 +26,11 @@ Rails.application.routes.draw do
   end
   # resources :users, only: [:show], as: 'profile'
   resources :relationships, only: [:create, :destroy]
-  resources :posts
+  resources :posts do
+    # postのidを取ってくるためにネストしている
+    resource :likes, only: [:create, :destroy]
+  end
+
   
   # get 'home/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

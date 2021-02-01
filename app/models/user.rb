@@ -8,6 +8,8 @@ class User < ApplicationRecord
         # プロフィール検索時に使うので必須
   
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :
   

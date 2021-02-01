@@ -7,9 +7,9 @@ class RelationshipsController < ApplicationController
     following = current_user.follow(@user)
     
     if following.save
-      redirect_to @user, notice: 'ユーザーをフォローしました'
+      redirect_to @user, notice: 'きになるしました！'
     else
-      redirect_to @user, notice: 'ユーザーのフォローに失敗しました'
+      redirect_to @user, notice: 'きになるに失敗しました…'
     end
   end
 
@@ -18,9 +18,9 @@ class RelationshipsController < ApplicationController
   def destroy
     following = current_user.unfollow(@user)
     if following.destroy
-      redirect_to @user, notice: 'ユーザーのフォローを解除しました'
+      redirect_to @user, notice: 'きになるをやめました'
     else
-      redirect_to @user, notice: "ユーザーのフォロー解除に失敗しました"
+      redirect_to @user, notice: "きになるのをやめられませんでした"
     end
   end
 
