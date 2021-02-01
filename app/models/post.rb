@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes
   has_many :users, through: :likes
+  has_many :comments, dependent: :destroy
   ##### タグ機能 #####
   # acts_as_taggable
   acts_as_ordered_taggable_on :tags
@@ -9,7 +10,7 @@ class Post < ApplicationRecord
 
   ##### バリデーション #####
   # 現状は本文を必須にしてるけど、画像投稿機能を実装したら画像か本文のどちらかが投稿されてればOKって感じにしたい
-  validates :body, presence: true ,length:  { maximum: 500 }
+  validates :body, presence: true ,length:  { maximum: 1000 }
   #######################
 
   # いいねされているか確認する条件式で使う。

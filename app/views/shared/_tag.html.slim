@@ -1,0 +1,5 @@
+      .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
+        .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-10
+          p タグ
+          - @tags.each do |tag|
+            = link_to "#{tag.name}(#{tag.taggings_count})"

@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
+  has_many :comments, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :
   
@@ -28,10 +29,10 @@ class User < ApplicationRecord
 #===========================================================================
   
 #==============バリデーション関連==============
-  #　OiceyIDは英数字15文字までアルファベットと数字以外は弾くようにしたい。（＊％＄＃＠＾！？とか）
+  #　OiceyIDは英数字15文字までアルファベットと数字以外は弾くようにしたい。（＊％＄＃＠＾！？とか）(英字、数字、「_」が利用できる。スペースはつかない　) 
   validates :oicey_id, presence: true, length:  { maximum: 15 }
-  # 名前がないと不便なので必須かつ30文字以内
-  validates :name, presence: true, length:  { maximum: 30 }
+  # 名前がないと不便なので必須かつ50文字以内
+  validates :name, presence: true, length:  { maximum: 50 }
   # 空欄でもOKだけど、200文字まで
   validates :self_introduction, length: { maximum: 200}
 #===========================================================================
