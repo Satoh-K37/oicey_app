@@ -16,7 +16,8 @@
             .table-fixed
               .flex.flex-wrap.-mx-3.mb-6
                 tr
-                
                   td=link_to comments.user.name,  profile_user_path(comments.user.id)
                   br
                   td=comments.comment
+                - if current_user.id == comments.user_id
+                  td= link_to '削除', post_comment_path(@post, comments.id), method: :delete, remote: true, data: { confirm: "コメントを削除します。よろしいですか？" }
