@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
-    # ,
-    # :users => 'users'
   } 
 
   devise_scope :user do
@@ -24,11 +22,12 @@ Rails.application.routes.draw do
     get :matchings, on: :member
     get :show, as: 'profile', on: :member
   end
-  # resources :users, only: [:show], as: 'profile'
+  
   resources :relationships, only: [:create, :destroy]
   resources :posts do
     # postのidを取ってくるためにネストしている
     resource :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 
   

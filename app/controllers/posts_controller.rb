@@ -13,7 +13,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     # 投稿に紐付くタグの表示
     @mytags = @post.tag_counts_on(:tags)
-
+    # コメントを作成する時に使う
+    # @comment = @post.comments.new
+    @comment = Comment.new
+    # 投稿詳細にされたコメントの一覧を表示させる
+    @comments = @post.comments
+    
   end
 
   def new
