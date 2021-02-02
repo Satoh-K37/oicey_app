@@ -9,6 +9,7 @@ class User < ApplicationRecord
   
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  # これでユーザーがいいねした投稿を取得できる
   has_many :like_posts, through: :likes, source: :post
   has_many :comments, dependent: :destroy
   # Include default devise modules. Others available are:
