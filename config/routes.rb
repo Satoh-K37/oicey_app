@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   end
   
   resources :relationships, only: [:create, :destroy]
+  resources :notifications, only: :index
+  
   resources :posts do
     # postのidを取ってくるためにネストしている
     resource :likes, only: [:create, :destroy]
