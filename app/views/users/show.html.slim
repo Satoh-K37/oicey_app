@@ -7,14 +7,15 @@
           .flex.flex-wrap.-mx-3.mb-6
             
             br = @user.name
-            br = @user.oicey_id
+            br
+              = @user.oicey_id
             / br = @user.email
             br = @user.self_introduction
             = link_to "気になるしたユーザー: #{@user.followings.count}", followings_user_path(@user.id)
             = "／"
             = link_to "気になるされたユーザー: #{@user.followers.count}", followers_user_path(@user.id)
             = "／"
-            = link_to "マッチングしたユーザー" , matchings_user_path(@user.id)
+            = link_to "マッチングしたユーザー", matchings_user_path(@user.id)
             
             hr
             = render partial: 'relationships/follow_form', user: @user
@@ -22,8 +23,7 @@
           - if current_user == @user
             .-mr-2.px-4.pt-4.pb-5.text-right
               button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
-                = link_to 'プロフィール編集', profile_edit_path(current_user) 
-          
+                = link_to 'プロフィール編集', profile_edit_path(current_user)
           / = render partial: 'shared/follow_form', user: @user
           
       .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
@@ -58,3 +58,5 @@
 
     = render partial: 'shared/side'
   = render partial: 'shared/fotter'
+
+
