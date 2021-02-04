@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     if @comment.save
       # redirect_to post_path(@post)
+      # コメントが投稿されたタイミングで通知レコードが作成される
+      @post.create_notification_comment!(current_user, @comment.id)
       redirect_back fallback_location: @post, notice: "コメントを送信しました"
     else
       # redirect_to post_path(@post)
