@@ -12,6 +12,10 @@ class User < ApplicationRecord
   # これでユーザーがいいねした投稿を取得できる
   has_many :like_posts, through: :likes, source: :post
   has_many :comments, dependent: :destroy
+  # 自分から相手へ送る通知
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  # 相手から自分へ送られてくる通知
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :
   
@@ -64,11 +68,19 @@ class User < ApplicationRecord
     # それぞれのメソッドを実行し、フォローしている&&フォローされているユーザーを確認する
     followings & followers
   end
-  # 
-  # def matchers
-  #   User.where(id: passive_relationships.select(:follower_id))
-  #    .where(id: active_relationships.select(:following_id))
-  # end
+
+  # フォロー通知作成
+  # 通知レコード作成
+  def create_notification_follow!(current_user)
+    notification_record = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if notification_record.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
 
 #===========================================================================
 
