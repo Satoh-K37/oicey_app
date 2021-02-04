@@ -44,10 +44,10 @@ class Post < ApplicationRecord
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     commentd_ids = Comment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
     commentd_ids.each do |commentd_id|
-      save_notification_comment!(current_user, comment_id, temp_id['user_id'])
+      save_notification_comment!(current_user, comment_id, commentd_id['user_id'])
     end
     # まだ誰もコメントしていない場合は、投稿者に通知を送る
-    save_notification_comment!(current_user, comment_id, user_id) if temp_ids.blank?
+    save_notification_comment!(current_user, comment_id, user_id) if commentd_ids.blank?
   end
 
   # 複数通知、自分自身へのコメントの通知を通知済みにする

@@ -8,7 +8,7 @@ class RelationshipsController < ApplicationController
     
     if following.save
       # フォローしたタイミングで通知レコードを作成する
-      following.create_notification_follow!(current_user)
+      @user.create_notification_follow!(current_user)
       redirect_to @user, notice: 'きになるしました！'
     else
       redirect_to @user, notice: 'きになるに失敗しました…'
