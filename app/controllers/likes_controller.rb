@@ -3,6 +3,8 @@ class LikesController < ApplicationController
     # like.user_id = current_user.idが済んだ状態で生成される。bulidはnewと同じ意味。アソシエーションしながらインスタンスをnewするときに使われるらしい。
     like = current_user.likes.build(post_id: params[:post_id])
     like.save
+    
+    post = Post.find(params[:post_id])
     # いいねが押されたタイミングで通知レコードを作成する
     post.create_notification_like!(current_user)
     redirect_to posts_path
