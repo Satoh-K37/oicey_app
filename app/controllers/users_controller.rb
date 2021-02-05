@@ -12,6 +12,33 @@ class UsersController < ApplicationController
     @myposts = current_user.posts.all
     # ユーザーがいいねした投稿を取得
     @like_posts = @user.like_posts
+
+    # DM
+    # サイン済みかを判断
+    if user_signed_in?
+      # current_userが既にルームに参加してるかを調べる
+      @currentUserEntry = Entry.where(user_id: current_user.id)
+      # 
+      @userEntry = Entry.where(user_id: @user.id)
+      unless @user.id == current_user.id
+        @currentUserEntry.each do |currentUser|
+          @userEntry.each do |entryUser|
+            if currentUser.room_id == entryUser.room_id
+              # 既にルームがあるという意味の変数
+              @haveRoom = true
+              # ルームにアクセスするための変数
+              @roomId = currentUser.room_id
+            end
+          end
+        end
+
+        unless @haveRoom
+          # 部屋がない場合にここの処理が実行
+          @room = Room.new
+          @entry = Entry.new
+        end
+      end
+    end
   end
 
   # フォローしている人を取得（フォロー）。気になるした人っていう使い方もできそう。
