@@ -18,7 +18,13 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :
-  
+
+  ########### DM　############
+  #　一人のユーザーは複数のエントリー(entries)を行い、複数のルーム(rooms)に入り、複数のメッセージ(messages)を送れるので全部has_manyになる
+  has_many :messages
+  has_many :entries
+  has_many :rooms, through: :entries
+  ###########################
   #==============ユーザーがフォローしているユーザーとのアソシエーション================
   has_many :relationships,  foreign_key: "user_id", 
                             dependent: :destroy

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
+  get 'rooms/create'
+  get 'rooms/show'
   # get 'users/show'
   root to: 'posts#index'
       
@@ -22,7 +25,9 @@ Rails.application.routes.draw do
     get :matchings, on: :member
     get :show, as: 'profile', on: :member
   end
-  
+  resources :rooms, only: [:index, :create, :show]
+  resources :messages, only: [:create, :edit, :update, :destroy]
+
   resources :relationships, only: [:create, :destroy]
   resources :notifications, only: :index
   
