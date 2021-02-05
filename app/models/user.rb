@@ -21,19 +21,19 @@ class User < ApplicationRecord
 
   ########### DM　############
   #　一人のユーザーは複数のエントリー(entries)を行い、複数のルーム(rooms)に入り、複数のメッセージ(messages)を送れるので全部has_manyになる
-  has_many :messages
-  has_many :entries
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries
   ###########################
   #==============ユーザーがフォローしているユーザーとのアソシエーション================
-  has_many :relationships,  foreign_key: "user_id", 
+  has_many :relationships,  foreign_key: 'user_id', 
                             dependent: :destroy
   #  フォローしているユーザーの一覧を取り出すときに使う
   has_many :followings, through: :relationships, source: :follow
 #============================================================================
 #==============ユーザーをフォローしてくれてるユーザーとのアソシエーション==============
-  has_many :passive_relationships,  class_name: "Relationship",
-                                    foreign_key: "follow_id",
+  has_many :passive_relationships,  class_name: 'Relationship',
+                                    foreign_key: 'follow_id',
                                     dependent: :destroy
   #  フォローされてるユーザーの一覧を取り出すときに使う
   has_many :followers, through: :passive_relationships, source: :user

@@ -17,6 +17,9 @@
             = "／"
             = link_to "マッチングしたユーザー", matchings_user_path(@user.id)
             
+            = render partial: 'enters'
+            p
+            
             hr
             = render partial: 'relationships/follow_form', user: @user
             hr
