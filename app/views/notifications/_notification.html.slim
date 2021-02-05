@@ -4,6 +4,7 @@
   .form-inline
     span
       = link_to profile_user_path(visitor) do
+        / ユーザーのアイコンを表示させるようにする
         / = image_tag avatar_url(visitor).to_s
         / , class: "icon_mini"
         strong
@@ -19,7 +20,7 @@
         = link_to 'あなたの投稿', notification.post
         / , style: "font-weight: bold;"
         
-        = "いいねしました"
+        = "にいいねしました"
       - when 'comment' then
         = 'さんが'
         - if notification.post.user_id == visited.id
@@ -28,11 +29,12 @@
         - else
           span
             = link_to post_path(notification.post) do
+              / ユーザーのアイコンを表示させるようにする
               = image_tag avatar_url(notification.post.user).to_s
               / , class: "icon_mini" 
               strong
                 = notification.post.user.name + 'さんの投稿'
-        = "コメントしました"
+        = "にコメントしました"
         p.text-muted.mb-0
           = Comment.find_by(id: notification.comment_id)&.comment
 
