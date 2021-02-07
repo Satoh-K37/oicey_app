@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+  get 'messages/destroy'
   get 'rooms/index'
   get 'rooms/create'
   get 'rooms/show'

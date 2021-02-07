@@ -1,2 +1,43 @@
 h1 Rooms#show
-p Find me in app/views/rooms/show.html.slim
+p Find me in app/views/rooms/show.html.slim.div#chat_area
+.left-button
+  = link_to "ユーザー一覧に戻る", matchings_user_path,class:"edit-link"
+h4.rooms-title
+  | 気になる同士
+- @entries.each do |e|
+  .user-name
+    strong
+      / = image_tag e.user.avatar, class:"user-image"
+      |  <a class="rooms-user-link" href="/users/#{e.user.id}
+      | "> 
+      = e.user.name
+      | さん 
+br
+p
+hr
+  .chats
+    .chat
+      - if @messages.present?
+        - @messages.each do |m|
+          .chat-box
+            .chat-icon
+              / = image_tag m.user.avatar, class:"user-image"
+            .chat-form
+              strong
+                = m.message
+              br
+              = m.created_at.strftime("%Y-%m-%d %H:%M")
+br
+  .message
+    = form_with(model: @message, local: true) do |f|
+      = f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+      = f.hidden_field :room_id
+        / , value: @room.id
+      = f.submit "送信"
+
+
+/ = render partial: 'rooms/chat_area'
+/ = render partial: 'rooms/chat_form'
+
+= render partial: 'shared/side'
+= render partial: 'shared/fotter'

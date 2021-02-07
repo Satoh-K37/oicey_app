@@ -14,9 +14,10 @@ class RoomsController < ApplicationController
       # ルームに参加するユーザーの情報を入れる
       @joinUser = Entry.create(join_room_params)
       # はじめの一言を自動的に入れている。（ここいらんかもな）
-      @first_message = @room.messages.create(user_id: current_user.id, message: "初めまして！")
+      # @first_message = @room.messages.create(user_id: current_user.id, message: "初めまして！")
       # 入ったルームに戻る
-      redirect_to room_path(@room.id)
+      # redirect_to room_path(@room.id)
+      redirect_to "/rooms/#{@room.id}"
   end
 
   def show
@@ -30,6 +31,7 @@ class RoomsController < ApplicationController
         # ルームに参加しているユーザーを取得
         @entries = @room.entries
     else
+        # 前のページに戻る
         redirect_back(fallback_location: root_path)
     end
   end
