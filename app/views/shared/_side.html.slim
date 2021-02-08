@@ -1,5 +1,7 @@
 side.col-span-1.bg-yellow-500
-    li = link_to '投稿一覧(HOME)', posts_path
-    li = link_to '新規投稿', new_post_path
-    li = link_to 'プロフィール', profile_user_path(current_user)
-    li = link_to '通知一覧',notifications_path(current_user)
+      / .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
+      /   .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-10
+      li = link_to '投稿一覧(HOME)', posts_path
+      li = link_to '新規投稿', new_post_path
+      li = link_to 'プロフィール', profile_user_path(current_user)
+      li = link_to '通知一覧',notifications_path(current_user)
