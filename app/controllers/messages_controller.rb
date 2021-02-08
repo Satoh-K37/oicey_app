@@ -8,9 +8,11 @@ class MessagesController < ApplicationController
               if @message.save
                   @message = Message.new
                   gets_entries_all_messages
+                  redirect_to room_path(@room.id)
               end
       else
           flash[:alert] = "メッセージの送信に失敗しました"
+          redirect_to room_path(@room.id)
       end
   end
 
@@ -26,17 +28,17 @@ class MessagesController < ApplicationController
   def edit
   end
 
-  def update
-      if @message.update(message_params)
-          gets_entries_all_messages
-      end
-  end
+  # def update
+  #     if @message.update(message_params)
+  #         gets_entries_all_messages
+  #     end
+  # end
 
-  def destroy
-      if @message.destroy
-          gets_entries_all_messages
-      end
-  end
+  # def destroy
+  #     if @message.destroy
+  #         gets_entries_all_messages
+  #     end
+  # end
 
   private
 
