@@ -1,2 +1,11 @@
-h1 Rooms#index
-p Find me in app/views/rooms/index.html.slim
+h1 DMユーザーリスト
+
+- @rooms.each do |room|
+  = link_to room_path(room), class: "dm_list__content__link" do
+    = opponent_user(room)
+    = most_new_message_preview(room)
+
+/ - @anotherEntries.each do |roomUser|
+/   = link_to room_path(roomUser.room.id) do
+/     = roomUser.user.name
+
