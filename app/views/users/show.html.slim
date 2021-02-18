@@ -16,7 +16,6 @@
             = link_to "気になるされたユーザー: #{@user.followers.count}", followers_user_path(@user.id)
             = "／"
             = link_to "マッチングしたユーザー", matchings_user_path(@user.id)
-            
             = render partial: 'enters'
             p
             

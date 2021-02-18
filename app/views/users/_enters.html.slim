@@ -1,36 +1,13 @@
-/ - if user_signed_in?
-/     - unless @user.id == current_user.id
-/         - if @haveRoom == true
-/             = link_to "ダイレクトメッセージ", room_path(@roomId)
-/             p
-/         - else
-/             = form_with(model:@room, local: true) do |f|
-/                 = fields_for @entry do |e|
-/                     = e.hidden_field :user_id, value: @user.id
-/                 = f.submit "ダイレクトメッセージ"
-/                 p
 
-- if user_signed_in?
-    - unless @user.id == current_user.id
-        - if @isRoom == true
-            = link_to "ダイレクトメッセージ", room_path(@roomId)
-            p
-        - else
-            = form_with(model:@room, local: true) do |f|
-                = fields_for @entry do |e|
-                    = e.hidden_field :user_id, value: @user.id
-                = f.submit "ダイレクトメッセージ"
-                p
+  - if user_signed_in?
+      - unless @user.id == current_user.id
+          - if @isRoom == true
+              = link_to "ダイレクトメッセージ", room_path(@roomId)
+              p
+          - else
+              = form_with(model:@room, local: true) do |f|
+                  = fields_for @entry do |e|
+                      = e.hidden_field :user_id, value: @user.id
+                  = f.submit "ダイレクトメッセージ"
+                  p
 
-/ - unless @user.id == current_user.id
-/   - if (current_user.matchers? @user) && (@user.matchers? current_user)
-/     - if @isRoom == true
-/       p.user-show-room
-/         | <a href="/rooms/
-/         = @roomId
-/         | " class="btn btn-primary btn-lg">チャットへ
-/     - else
-/       = form_for @room do |f|
-/         = fields_for @entry do |e|
-/           = e.hidden_field :user_id, value: @user.id
-/         = f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"
