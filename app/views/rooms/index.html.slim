@@ -1,11 +1,25 @@
 h1 DMユーザーリスト
 
-- @rooms.each do |room|
-  = link_to room_path(room), class: "dm_list__content__link" do
-    = opponent_user(room)
-    = most_new_message_preview(room)
+.row
+  .col-xs-3
 
-/ - @anotherEntries.each do |roomUser|
-/   = link_to room_path(roomUser.room.id) do
-/     = roomUser.user.name
+  .col-xs-6
+    table.table
+      thead
+        tr
+          th
+            | メッセージ相手
+          th
+            | メッセージ内容
 
+      tbody
+        - @anotherEntries.each do |entry|
+          tr
+            td
+              = link_to entry.user.name, room_path(entry.user.id)
+
+            td
+              = link_to room_path(entry.room) do
+                / 最後に送られたメッセージを表示
+                = Message.find_by(id: entry.room.message_ids.last)&.message
+  .col-xs-3

@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries
+  # , source: :user
   ###########################
   #==============ユーザーがフォローしているユーザーとのアソシエーション================
   has_many :relationships,  foreign_key: 'user_id', 

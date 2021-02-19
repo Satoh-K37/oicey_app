@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @myposts = current_user.posts.all
     # ユーザーがいいねした投稿を取得
     @like_posts = @user.like_posts
+    @rooms = @user.rooms
 
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
@@ -56,6 +57,7 @@ class UsersController < ApplicationController
     #     end
     #   end
     # end
+    
 
   end
 
@@ -85,8 +87,8 @@ class UsersController < ApplicationController
   # # PUT /resource
   def update
     # super
-        # 対象のユーザーをidで検索して、@userに格納
-    # 共通化済み　set_user
+    # 対象のユーザーをidで検索して、@userに格納
+    @user = User.find(params[:id])
     #　user_paramsの値に変更があった場合にifの処理に入る。それ以外はelseに入る。
     if @user.update(user_params)
       # 更新に成功したら、ユーザー詳細ページに遷移する

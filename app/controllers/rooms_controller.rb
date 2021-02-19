@@ -3,21 +3,34 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # 参加中のDMルームを表示するために必要
-      @rooms = current_user.rooms.includes(:messages).order("messages.created_at desc")
+    # @currentEntriesにログインしているユーザー（自分）Entryテーブルの情報を引っ張ってきて格納
+    @currentEntries = current_user.entries
+    # 配列myRoomIdsを空の状態で作成
+    myRoomIds = []
+    # each文を使って@currentEntriesに格納したEntryテーブルからRoomテーブルにアクセスし、room.idをmyRoomIdsに格納する
+    @currentEntries.each do |entry|
+      myRoomIds << entry.room_id
+    end
+    # 自分のuser_idと一致しないユーザーを抽出
+    @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: current_user.id)
+
   end
 
   def create
       @room = Room.create
       # Entriesテーブルにログイン中のユーザーのIDとルームIDの情報を入れる
       @joinCurrentUser = Entry.create(user_id: current_user.id, room_id: @room.id)
+      if @joinCurrentUser.present?
       # ルームに参加するユーザーの情報を入れる
-      @joinUser = Entry.create(join_room_params)
+        @joinUser = Entry.create(join_room_params)
+      else
+        flash[:alert] = "メッセージ送信に失敗しました。"
+      end
       # はじめの一言を自動的に入れている。（ここいらんかもな）
       # @first_message = @room.messages.create(user_id: current_user.id, message: "初めまして！")
       # 入ったルームに戻る
-      # redirect_to room_path(@room.id)
-      redirect_to "/rooms/#{@room.id}"
+      redirect_to room_path(@room.id)
+      # redirect_to "/rooms/#{@room.id}"
   end
 
   def show
