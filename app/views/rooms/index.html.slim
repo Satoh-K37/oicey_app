@@ -16,33 +16,10 @@ h1 DMユーザーリスト
         - @anotherEntries.each do |entry|
           tr
             td
-              = link_to entry.user.name, room_path(entry.user)
+              = link_to entry.user.name, room_path(entry.user.id)
 
             td
               = link_to room_path(entry.room) do
                 / 最後に送られたメッセージを表示
-                = Message.find_by(id: entry.room.message_ids.last)
-              / = most_new_message_preview(room)
-
-
+                = Message.find_by(id: entry.room.message_ids.last)&.message
   .col-xs-3
-/ .dm_list
-/   - @rooms.each do |room|
-/     .dm_list__content
-/       = link_to room_path(room), class: "dm_list__content__link" do
-/         .dm_list__content__link__box
-/           h3.dm_list__content__link__box__name
-/             = opponent_user(room)
-/           p.dm_list__content__link__box__message
-/             = most_new_message_preview(room)
-
-/ - if current_user.id == @user.id 
-/   - @room_users.each do |roomuser|
-/     - roomuser.users.each do |userlist|
-/       - if userlist.id == current_user.id 
-/       - else
-/         = link_to room_path(roomuser.id)
-
-/ - @anotherEntries.each do |entryUser|
-/   = link_to room_path(entryUser.room.id) do
-/     = entryUser.user.name

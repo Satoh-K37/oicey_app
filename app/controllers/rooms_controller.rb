@@ -3,23 +3,14 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # 参加中のDMルームを表示するために必要
-    # @rooms = current_user.rooms.includes(:messages).order("messages.created_at desc")
-
-    # @room = Room.find(params[:room_id])
-    # @rooms = current_user.rooms
-    
-
     # @currentEntriesにログインしているユーザー（自分）Entryテーブルの情報を引っ張ってきて格納
     @currentEntries = current_user.entries
     # 配列myRoomIdsを空の状態で作成
     myRoomIds = []
-    
     # each文を使って@currentEntriesに格納したEntryテーブルからRoomテーブルにアクセスし、room.idをmyRoomIdsに格納する
     @currentEntries.each do |entry|
       myRoomIds << entry.room_id
     end
-  
     # 自分のuser_idと一致しないユーザーを抽出
     @anotherEntries = Entry.where(room_id: myRoomIds).where.not(user_id: current_user.id)
 
