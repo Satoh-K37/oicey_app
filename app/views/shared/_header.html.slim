@@ -1,6 +1,6 @@
     .header.grid-cols-1.bg-yellow-500
       nav
-        li = link_to 'Oicey', root_path
+        li = link_to 'ApexFriend', root_path
         - if user_signed_in?
           li = link_to 'プロフィール',profile_user_path(current_user)
           li = link_to '通知一覧',notifications_path(current_user)
