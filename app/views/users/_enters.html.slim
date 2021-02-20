@@ -2,12 +2,12 @@
   - if user_signed_in?
       - unless @user.id == current_user.id
           - if @isRoom == true
-              = link_to "ダイレクトメッセージ", room_path(@roomId)
-              p
+              = link_to "DM", room_path(@roomId)
+              br
           - else
               = form_with(model:@room, local: true) do |f|
                   = fields_for @entry do |e|
                       = e.hidden_field :user_id, value: @user.id
-                  = f.submit "ダイレクトメッセージ"
-                  p
+                  = f.submit "DM"
+                  br
 
