@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     # サインアップ時にoicey_idとnameのストロングパラメータを追加
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:oicey_id, :name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     # アカウント編集の時にoicey_idとnameとself_introductionのストロングパラメータを追加
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :self_introduction])
   end

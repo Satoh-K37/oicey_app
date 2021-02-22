@@ -8,7 +8,7 @@
             
             br = @user.name
             br
-              = @user.oicey_id
+              / = @user.oicey_id
             / br = @user.email
             br = @user.self_introduction
             = link_to "気になるしたユーザー: #{@user.followings.count}", followings_user_path(@user.id)
