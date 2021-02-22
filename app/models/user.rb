@@ -42,7 +42,7 @@ class User < ApplicationRecord
   
 #==============バリデーション関連==============
   #　OiceyIDは英数字15文字までアルファベットと数字以外は弾くようにしたい。（＊％＄＃＠＾！？とか）(英字、数字、「_」が利用できる。スペースはつかない　) 
-  validates :oicey_id, presence: true, length:  { maximum: 15 }
+  # validates :oicey_id, presence: true, length:  { maximum: 15 }
   # 名前がないと不便なので必須かつ50文字以内
   validates :name, presence: true, length:  { maximum: 50 }
   # 空欄でもOKだけど、200文字まで
