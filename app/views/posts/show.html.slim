@@ -23,10 +23,10 @@
                   td.border.border-green-600
                     = simple_format(h(@post.body), {}, sanitize: false, wrapper_tag: "div")
                 tr
-                  th.border.border-green-600
-                    = Post.human_attribute_name(:images)
-                  td.border.border-green-600
-                    = @post.images
+                  / th.border.border-green-600
+                  /   = Post.human_attribute_name(:images)
+                  / td.border.border-green-600
+                  /   = @post.images
                 tr
                   th.border.border-green-600
                     = Post.human_attribute_name(:visit_day)
