@@ -24,7 +24,8 @@ Things you may want to cover:
 * ...
 
 # アプリ概要
-APEXのフレンドマッチングアプリ
+APEXフレンドマッチングアプリ「ApexFriend」
+募集サイトでのミスマッチをなくすためのマッチングアプリ
 
 ## コミット時のPrefixルール
 * feat: 新しい機能
