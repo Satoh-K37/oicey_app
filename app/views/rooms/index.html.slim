@@ -1,25 +1,30 @@
-h1 DMユーザーリスト
+.flex-col
+  .grid.h-screen.grid.grid-cols-6
+    main.col-span-5.bg-gray-100
+      .max-w-2xl.mx-auto.sm:px-6.lg:px-8
+        h1 DMユーザーリスト
+        .row
+          .col-xs-3
 
-.row
-  .col-xs-3
+          .col-xs-6
+            table.table
+              thead
+                tr
+                  th
+                    | メッセージ相手
+                  th
+                    | メッセージ内容
 
-  .col-xs-6
-    table.table
-      thead
-        tr
-          th
-            | メッセージ相手
-          th
-            | メッセージ内容
+              tbody
+                - @anotherEntries.each do |entry|
+                  tr
+                    td
+                      = link_to entry.user.name, room_path(entry.user.id)
 
-      tbody
-        - @anotherEntries.each do |entry|
-          tr
-            td
-              = link_to entry.user.name, room_path(entry.user.id)
-
-            td
-              = link_to room_path(entry.room) do
-                / 最後に送られたメッセージを表示
-                = Message.find_by(id: entry.room.message_ids.last)&.message
-  .col-xs-3
+                    td
+                      = link_to room_path(entry.room) do
+                        / 最後に送られたメッセージを表示
+                        = Message.find_by(id: entry.room.message_ids.last)&.message
+          .col-xs-3
+    = render partial: 'shared/side'
+  = render partial: 'shared/fotter'
