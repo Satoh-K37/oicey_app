@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_133041) do
+ActiveRecord::Schema.define(version: 2021_02_25_163939) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -138,9 +138,9 @@ ActiveRecord::Schema.define(version: 2021_02_23_133041) do
     t.text "self_introduction"
     t.string "sex", default: "0", null: false
     t.boolean "status", default: false, null: false
-    t.integer "platform_name", null: false
-    t.string "platform_id", null: false
-    t.integer "voicechatstyle", null: false
+    t.integer "platform_name", default: 0, null: false
+    t.string "platform_id", default: "", null: false
+    t.integer "voicechatstyle", default: 0, null: false
     t.string "playstyle"
     t.string "favoriteweapon"
     t.integer "legend_id"
