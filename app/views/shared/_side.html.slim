@@ -12,6 +12,8 @@
           span.text-sm.font-medium
             / | 募集一覧
             = link_to '募集一覧', posts_path
+          span.ml-auto.mr-6.text-sm.bg-red-100.rounded-full.px-3.py-px.text-red-500
+            | 1
       li
         a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
           span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
@@ -28,6 +30,8 @@
           span.text-sm.font-medium
             / | メッセージ
             = link_to 'メッセージ',rooms_index_path(current_user)
+          span.ml-auto.mr-6.text-sm.bg-red-100.rounded-full.px-3.py-px.text-red-500
+            | 3
       li
         a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
           span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400

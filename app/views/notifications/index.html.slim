@@ -1,11 +1,15 @@
-  / 自分の投稿に対するいいね、コメントは通知に表示しない
-  - notifications = @notifications.where.not(visitor_id: current_user.id)
-  - if notifications.exists?
-    = render notifications
-      / = paginate notifications
-  - else
-    p
-      | 通知はありません
+.flex-col
+  .grid.h-screen.grid.grid-cols-6
+    main.col-span-5.bg-gray-100
+      .max-w-2xl.mx-auto.sm:px-6.lg:px-8
+        / 自分の投稿に対するいいね、コメントは通知に表示しない
+        - notifications = @notifications.where.not(visitor_id: current_user.id)
+        - if notifications.exists?
+          = render notifications
+            / = paginate notifications
+        - else
+          p
+            | 通知はありません
 
-  = render partial: 'shared/side'
+    = render partial: 'shared/side'
   = render partial: 'shared/fotter'
