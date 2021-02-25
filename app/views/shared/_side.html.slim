@@ -1,9 +1,73 @@
-side.col-span-1.bg-yellow-500
-      / .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
-      /   .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-10
-      li = link_to '募集一覧', posts_path
-      / li = link_to '募集を作成する', new_post_path
-      li = link_to '通知一覧',notifications_path(current_user)
-      li = link_to 'DM',rooms_index_path(current_user)
-      li = link_to 'マイページ', profile_user_path(current_user)
-      
+/ link[rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"]
+.min-h-screen.flex.flex-row.bg-yellow-500
+  .flex.flex-col.w-60.bg-white.overflow-hidden
+    / .flex.items-center.justify-center.h-20.shadow-md
+    /   h1.text-3xl.uppercase.text-indigo-500
+    /     | Logo
+    ul.flex.flex-col.py-4
+      li
+        a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+          span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+            i.bx.bx-home
+          span.text-sm.font-medium
+            / | 募集一覧
+            = link_to '募集一覧', posts_path
+      li
+        a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+          span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+            i.bx.bx-bell
+          span.text-sm.font-medium
+            / | Notifications
+            = link_to '通知一覧',notifications_path(current_user)
+          span.ml-auto.mr-6.text-sm.bg-red-100.rounded-full.px-3.py-px.text-red-500
+            | 5
+      li
+        a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+          span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+            i.bx.bx-drink
+          span.text-sm.font-medium
+            / | メッセージ
+            = link_to 'メッセージ',rooms_index_path(current_user)
+      li
+        a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+          span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+            i.bx.bx-shopping-bag
+          span.text-sm.font-medium
+            / | マイページ
+            = link_to 'マイページ', profile_user_path(current_user)
+
+      / li
+      /   a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+      /     span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+      /       i.bx.bx-chat
+      /     span.text-sm.font-medium
+      /       | Chat
+      / li
+      /   a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+      /     span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+      /       i.bx.bx-user
+      /     span.text-sm.font-medium
+      /       | Profile
+      / li
+      /   a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+      /     span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+      /       i.bx.bx-bell
+      /     span.text-sm.font-medium
+      /       | Notifications
+      /     span.ml-auto.mr-6.text-sm.bg-red-100.rounded-full.px-3.py-px.text-red-500
+      /       | 5
+      / li
+      /   a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+      /     span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+      /       i.bx.bx-log-out
+      /     span.text-sm.font-medium
+      /       | Logout
+
+    / side.col-span-1.bg-yellow-500
+    /       / .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
+    /       /   .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-10
+    /       li = link_to '募集一覧', posts_path
+    /       / li = link_to '募集を作成する', new_post_path
+    /       li = link_to '通知一覧',notifications_path(current_user)
+    /       li = link_to 'DM',rooms_index_path(current_user)
+    /       li = link_to 'マイページ', profile_user_path(current_user)
