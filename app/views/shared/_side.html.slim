@@ -17,6 +17,13 @@
       li
         a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
           span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
+            i.bx.bx-home
+          span.text-sm.font-medium
+            / | 募集一覧
+            = link_to '募集を作成', new_post_path
+      li
+        a.flex.flex-row.items-center.h-12.transform.hover:translate-x-2.transition-transform.ease-in.duration-200.text-gray-500.hover:text-gray-800[href="#"]
+          span.inline-flex.items-center.justify-center.h-12.w-12.text-lg.text-gray-400
             i.bx.bx-bell
           span.text-sm.font-medium
             / | Notifications
