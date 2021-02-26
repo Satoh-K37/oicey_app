@@ -60,7 +60,9 @@
         .form-input
           =f.label :picklegend
           .w-full.md:w-full.px-3.mb-2.mt-2
-            =f.text_area :picklegend, rows: 3, placeholder:"ブラッドハウンド" , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+            = f.select :picklegend, [["ブラッドハウンド", "ブラッドハウンド"], ["ジブラルタル", "ジブラルタル"], ["パスファインダー", "パスファインダー"], ["レイス", "レイス"], ["バンガロール", "バンガロール"], ["コースティック", "コースティック"], ["ミラージュ", "ミラージュ"], ["オクタン", "オクタン"], ["ワットソン","ワットソン"], ["クリプト", "クリプト"], ["レブナント", "レブナント"], ["ローバ", "ローバ"], ["ランパート", "ランパート"], ["ホライゾン", "ホライゾン"], ["ヒューズ", "ヒューズ"]]
+              
+            / =f.text_area :picklegend, rows: 3, placeholder:"ブラッドハウンド" , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
         .form-input
           =f.label :playstyle
           .w-full.md:w-full.px-3.mb-2.mt-2
