@@ -1,9 +1,12 @@
 class Post < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :legend
   belongs_to :user
   has_many :likes
   has_many :users, through: :likes
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  
 
   ##### タグ機能 #####
   # acts_as_taggable
