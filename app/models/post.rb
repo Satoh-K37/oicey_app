@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :legend
+  belongs_to_active_hash :platform
+  belongs_to_active_hash :voicechat
   belongs_to :user
   has_many :likes
   has_many :users, through: :likes

@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = Post.new  
   end
 
   def create
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:platform_name, :voicechatstyle, :picklegend, :body, :visit_day, :tag_list)
+    params.require(:post).permit(:platform_name, :voicechatstyle, :body, :visit_day, :picklegend, :tag_list)
   end
 
 end
