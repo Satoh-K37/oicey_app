@@ -6,9 +6,9 @@
       .max-w-2xl.mx-auto.sm:px-6.lg:px-8
         - @posts.each do |post|
           .overflow-hidden.shadow-md
-            .px-6.py-4.bg-white.border-b.border-gray-200.font-bold.uppercase
+            .px-6.py-4.bg-white.border-b.border-gray-400.font-bold.uppercase
               td= post.updated_at
-            .p-6.bg-white.border-b.border-gray-200
+            .p-6.bg-white.border-b.border-gray-400
                 .flex.flex-wrap.-mx-3.mb-6
                   = link_to post.user.name, profile_user_path(post.user.id)
                   = post.platform_name
@@ -26,7 +26,7 @@
                   .flex.flex-wrap.-mx-3.mb-6
                     = post.playstyle
                     = post.picklegend
-          .p-6.bg-white.border-gray-200.text-left
+          .p-6.bg-white.border-gray-400.text-left
               / a.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
               - if user_signed_in?
                 - if post.liked_by?(current_user)
@@ -35,7 +35,7 @@
                 - else 
                   td= link_to 'きになる', post_likes_path(post.id), method: :post
                   td= post.likes.count
-          .p-6.bg-white.border-gray-200.text-right
+          .p-6.bg-white.text-right.border-b.border-gray-400
             a.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
               | フレンドになる
 

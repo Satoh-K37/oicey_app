@@ -1,77 +1,210 @@
+br
 .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-8.mb-4.max-w-lg
   .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-2
     .flex.flex-wrap.-mx-3.mb-6
-      / PostテーブルのIDが存在する場合は編集を表示し、存在しない場合は新規投稿を表示させる
-    - if @post.id.present?
-        h1 投稿編集
-    - else
-        h1 新規投稿
-    = form_with model: @post, local: true do |f|
-      .px-4.pt-3.pb-2.text-gray-800.text-lg
-        .form-check
-          =f.label :platform_name
+      .max-w-2xl.mx-auto.sm:px-6.lg:px-8
+        = form_with model: @post, local: true do |f|
           br
-          =check_box_tag :platform_name
-          =label_tag :platform_name, "PC"
-          br
-          =check_box_tag :platform_name
-          =label_tag :platform_name, "PS4"
-          br
-          =check_box_tag :platform_name
-          =label_tag :platform_name, "Xbox"
-          br
-          =check_box_tag :platform_name
-          =label_tag :platform_name, "Switch"
-        / .form-input
-        /   =f.label :platform_name
-        /   .w-full.md:w-full.px-3.mb-2.mt-2
-        /     =f.text_field :platform_name, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-      .px-4.pt-3.pb-2.text-gray-800.text-lg
-        .form-check
-          =f.label :voicechatstyle
-          br
-          =check_box_tag :voicechatstyle
-          =label_tag :voicechatstyle, "なし"
-          br
-          =check_box_tag :voicechatstyle
-          =label_tag :voicechatstyle, "Skype"
-          br
-          =check_box_tag :voicechatstyle
-          =label_tag :voicechatstyle, "LINE"
-          br
-          =check_box_tag :voicechatstyle
-          =label_tag :voicechatstyle, "PS4"
-          br
-          =check_box_tag :voicechatstyle
-          =label_tag :voicechatstyle, "Discord"
-          br
-          =check_box_tag :voicechatstyle
-          =label_tag :voicechatstyle, "聞き専"
+          = link_to '←', :back
+          .overflow-hidden.shadow-md
+            - if @post.id.present?
+                h1
+                | 投稿編集
+            - else
+                h1
+                | 新規投稿
+            .px-6.py-4.bg-white.border-b.border-gray-400.font-bold.uppercase
+            .p-6.bg-white.border-b.border-gray-400
+                .flex.flex-wrap.-mx-3.mb-6
+                  / = link_to post.user.name, profile_user_path(post.user.id)
+                  / = post.platform_name
+                  / = post.voicechatstyle
+                .table-fixed
+                  .flex.flex-wrap.-mx-3.mb-6
+                    
+                      .px-4.pt-3.pb-2.text-gray-800.text-lg
+                        / .check_box
+                        /   = form_with model: @platforms, local: true do |pf|
+                        /     = pf.collection_check_boxes(:platform_ids, Platform.all, :id, :name) do |pfb|
+                        /       = pfb.label { pfb.check_box + pfb.text }
+                        / .check_box
+                        /   = f.collection_check_boxes():platform_id, Platform.all, :id, :name do |b|
+                        /     = b.label { b.check_box + b.text }
+                            
+                        / .form-check
+                        / =f.label :platform_name
+                        /   br
+                        /   =check_box_tag :platform_name
+                        /   =label_tag :platform_name, "PC"
+                        /   br
+                        /   =check_box_tag :platform_name
+                        /   =label_tag :platform_name, "PS4"
+                        /   br
+                        /   =check_box_tag :platform_name
+                        /   =label_tag :platform_name, "Xbox"
+                        /   br
+                        /   =check_box_tag :platform_name
+                        /   =label_tag :platform_name, "Switch"
+                        / .form-input
+                        /   =f.label :platform_name
+                        /   .w-full.md:w-full.px-3.mb-2.mt-2
+                        /     =f.text_field :platform_name, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                      .px-4.pt-3.pb-2.text-gray-800.text-lg
+                        .check_box
+                          / / = form_with model: @voicechats, local: true do |vc|
+                          / /   = vc.collection_check_boxes :voicechat_id, Voicechat.all, :id, :name do |vcb|
+                          / /     = vcb.label { vcb.check_box + vcb.text }
+                          / =f.label :voicechatstyle
+                          / br
+                          / =check_box_tag :voicechatstyle
+                          / =label_tag :voicechatstyle, "なし"
+                          / br
+                          / =check_box_tag :voicechatstyle
+                          / =label_tag :voicechatstyle, "Skype"
+                          / br
+                          / =check_box_tag :voicechatstyle
+                          / =label_tag :voicechatstyle, "LINE"
+                          / br
+                          / =check_box_tag :voicechatstyle
+                          / =label_tag :voicechatstyle, "PS4"
+                          / br
+                          / =check_box_tag :voicechatstyle
+                          / =label_tag :voicechatstyle, "Discord"
+                          / br
+                          / =check_box_tag :voicechatstyle
+                          / =label_tag :voicechatstyle, "聞き専"
 
-        / .form-input
-        /   =f.label :voicechatstyle
-        /   .w-full.md:w-full.px-3.mb-2.mt-2
-        /     =f.text_field :voicechatstyle, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-      .px-4.pt-3.pb-2.text-gray-800.text-lg
-        .form-textarea
-          =f.label :body
-          .w-full.md:w-full.px-3.mb-2.mt-2
-            =f.text_area :body, rows: 10, placeholder:"Apexで一緒に遊びましょう！" , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-        .form-input
-          =f.label :picklegend
-          .w-full.md:w-full.px-3.mb-2.mt-2
-          = f.collection_select(:legend_id, Legend.all, :id, :name, {},)
-          
-        .form-input
-          =f.label :playstyle
-          .w-full.md:w-full.px-3.mb-2.mt-2
-            =f.text_area :playstyle, rows: 3, placeholder:"カジュアル専です！楽しくやりましょう！" , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-          / =f.label :visit_day
-          / |:
-          / =f.date_select :visit_day
-          / .uppercase.px-8.py-2.rounded-full.bg-green-600.text-blue-50.max-w-max.shadow-sm.hover:shadow-md
-        =f.label :tag_list
-        =f.text_field :tag_list, value: @post.tag_list.join(','), placeholder:"カジュアル,エンジョイ,たまにランク", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-        .-mr-2.px-4.pt-4.pb-5.text-right
-          button.px-4.pt-3.pb-2.bg-white.text-gray-700.font-medium.py-1.px-4.border.border-gray-400.rounded-lg.tracking-wide.mr-1.hover:bg-gray-100
-            =f.submit '募集作成'
+                        / .form-input
+                        /   =f.label :voicechatstyle
+                        /   .w-full.md:w-full.px-3.mb-2.mt-2
+                        /     =f.text_field :voicechatstyle, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                      .px-4.pt-3.pb-2.text-gray-800.text-lg
+                        .form-textarea
+                          =f.label :body
+                          .w-full.md:w-full.px-3.mb-2.mt-2
+                            =f.text_area :body, rows: 10, placeholder:"Apexで一緒に遊びましょう！" , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                        .form-input
+                          =f.label :picklegend
+                          .w-full.md:w-full.px-3.mb-2.mt-2
+                          = f.collection_select(:legend_id, Legend.all, :id, :name, {},)
+
+                        .form-input
+                          =f.label :playstyle
+                          .w-full.md:w-full.px-3.mb-2.mt-2
+                            =f.text_area :playstyle, rows: 3, placeholder:"カジュアル専です！楽しくやりましょう！" , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                          / =f.label :visit_day
+                          / |:
+                          / =f.date_select :visit_day
+                          / .uppercase.px-8.py-2.rounded-full.bg-green-600.text-blue-50.max-w-max.shadow-sm.hover:shadow-md
+                        =f.label :tag_list
+                        =f.text_field :tag_list, value: @post.tag_list.join(','), placeholder:"カジュアル,エンジョイ,たまにランク", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                        
+                  .flex.flex-wrap.-mx-3.mb-6
+                    / = post.playstyle
+                    / = post.picklegend
+          .p-6.bg-white.border-gray-200.text-left
+              / a.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
+              / - if user_signed_in?
+              /   - if post.liked_by?(current_user)
+              /     td= link_to 'きになる済み', post_likes_path(post.id), method: :delete
+              /     td= post.likes.count
+              /   - else 
+              /     td= link_to 'きになる', post_likes_path(post.id), method: :post
+              /     td= post.likes.count
+          .-mr-2.px-4.pt-4.pb-5.text-right
+            button.px-4.pt-3.pb-2.bg-white.text-gray-700.font-medium.py-1.px-4.border.border-gray-400.rounded-lg.tracking-wide.mr-1.hover:bg-gray-100
+              =f.submit '募集作成'
+
+
+
+/ .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-8.mb-4.max-w-lg
+/   .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-2
+/     .flex.flex-wrap.-mx-3.mb-6
+/       / PostテーブルのIDが存在する場合は編集を表示し、存在しない場合は新規投稿を表示させる
+/     - if @post.id.present?
+/         h1 投稿編集
+/     - else
+/         h1 新規投稿
+/     = form_with model: @post, local: true do |f|
+/       .px-4.pt-3.pb-2.text-gray-800.text-lg
+/         / .check_box
+/         /   = form_with model: @platforms, local: true do |pf|
+/         /     = pf.collection_check_boxes(:platform_ids, Platform.all, :id, :name) do |pfb|
+/         /       = pfb.label { pfb.check_box + pfb.text }
+/         / .check_box
+/         /   = f.collection_check_boxes():platform_id, Platform.all, :id, :name do |b|
+/         /     = b.label { b.check_box + b.text }
+            
+/         .form-check
+/         =f.label :platform_name
+/           br
+/           =check_box_tag :platform_name
+/           =label_tag :platform_name, "PC"
+/           br
+/           =check_box_tag :platform_name
+/           =label_tag :platform_name, "PS4"
+/           br
+/           =check_box_tag :platform_name
+/           =label_tag :platform_name, "Xbox"
+/           br
+/           =check_box_tag :platform_name
+/           =label_tag :platform_name, "Switch"
+/         / .form-input
+/         /   =f.label :platform_name
+/         /   .w-full.md:w-full.px-3.mb-2.mt-2
+/         /     =f.text_field :platform_name, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+/       .px-4.pt-3.pb-2.text-gray-800.text-lg
+/         .check_box
+/           / = form_with model: @voicechats, local: true do |vc|
+/           /   = vc.collection_check_boxes :voicechat_id, Voicechat.all, :id, :name do |vcb|
+/           /     = vcb.label { vcb.check_box + vcb.text }
+/           =f.label :voicechatstyle
+/           br
+/           =check_box_tag :voicechatstyle
+/           =label_tag :voicechatstyle, "なし"
+/           br
+/           =check_box_tag :voicechatstyle
+/           =label_tag :voicechatstyle, "Skype"
+/           br
+/           =check_box_tag :voicechatstyle
+/           =label_tag :voicechatstyle, "LINE"
+/           br
+/           =check_box_tag :voicechatstyle
+/           =label_tag :voicechatstyle, "PS4"
+/           br
+/           =check_box_tag :voicechatstyle
+/           =label_tag :voicechatstyle, "Discord"
+/           br
+/           =check_box_tag :voicechatstyle
+/           =label_tag :voicechatstyle, "聞き専"
+
+/         / .form-input
+/         /   =f.label :voicechatstyle
+/         /   .w-full.md:w-full.px-3.mb-2.mt-2
+/         /     =f.text_field :voicechatstyle, class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+/       .px-4.pt-3.pb-2.text-gray-800.text-lg
+/         .form-textarea
+/           =f.label :body
+/           .w-full.md:w-full.px-3.mb-2.mt-2
+/             =f.text_area :body, rows: 10, placeholder:"Apexで一緒に遊びましょう！" , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+/         .form-input
+/           =f.label :picklegend
+/           .w-full.md:w-full.px-3.mb-2.mt-2
+/           = f.collection_select(:legend_id, Legend.all, :id, :name, {},)
+
+/         .form-input
+/           =f.label :playstyle
+/           .w-full.md:w-full.px-3.mb-2.mt-2
+/             =f.text_area :playstyle, rows: 3, placeholder:"カジュアル専です！楽しくやりましょう！" , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+/           / =f.label :visit_day
+/           / |:
+/           / =f.date_select :visit_day
+/           / .uppercase.px-8.py-2.rounded-full.bg-green-600.text-blue-50.max-w-max.shadow-sm.hover:shadow-md
+/         =f.label :tag_list
+/         =f.text_field :tag_list, value: @post.tag_list.join(','), placeholder:"カジュアル,エンジョイ,たまにランク", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+        
+/         .-mr-2.px-4.pt-4.pb-5.text-right
+/           button.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
+/             =f.submit '募集作成'
+/           / px-4.pt-3.pb-2.bg-white.text-gray-700.font-medium.py-1.px-4.border.border-gray-400.rounded-lg.tracking-wide.mr-1.hover:bg-gray-100
+/             =f.submit '募集作成'
