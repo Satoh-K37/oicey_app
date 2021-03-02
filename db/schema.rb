@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_163939) do
+ActiveRecord::Schema.define(version: 2021_03_02_093624) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -69,10 +69,7 @@ ActiveRecord::Schema.define(version: 2021_02_25_163939) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.integer "platform_name", null: false
-    t.integer "voicechatstyle", null: false
-    t.string "playstyle"
-    t.string "picklegend"
+    t.string "images"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -138,12 +135,10 @@ ActiveRecord::Schema.define(version: 2021_02_25_163939) do
     t.text "self_introduction"
     t.string "sex", default: "0", null: false
     t.boolean "status", default: false, null: false
-    t.integer "platform_name", default: 0, null: false
-    t.string "platform_id", default: "", null: false
-    t.integer "voicechatstyle", default: 0, null: false
-    t.string "playstyle"
-    t.string "favoriteweapon"
-    t.integer "legend_id"
+    t.integer "age"
+    t.date "birthday"
+    t.integer "birthplace_id", default: 0
+    t.integer "residence_id", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
