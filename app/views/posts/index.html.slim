@@ -23,7 +23,25 @@
                         button.bg-red-500.hover:bg-red-700.text-white.font-bold.py-2.px-4.rounded
                           = link_to '削除', post, method: :delete, remote: true, data: { confirm: "投稿を削除します。よろしいですか？" }
                   .flex.flex-wrap.-mx-3.mb-6
-          .p-6.bg-white.border-gray-400.text-left
+                / - @mytags.each do |tag|
+                /   td.border.border-green-600
+                /     = @post.tag_list.map { |tag| "#{tag}" }.join(' ')
+          / .p-2.bg-white.border-gray-400.text-left
+          /     / a.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
+          /     - if user_signed_in?
+          /       - if post.liked_by?(current_user)
+          /         td= link_to 'きになる済み', post_likes_path(post.id), method: :delete
+          /         td= post.likes.count
+          /       - else 
+          /         td= link_to 'きになる', post_likes_path(post.id), method: :post
+          /         td= post.likes.count
+          / .p-2.bg-white.border-gray-400.text-center
+          /   | お店の詳細（Hotペッパーのサイトに飛ぶ）
+          / .p-2.bg-white.text-right.border-b.border-gray-400
+          /   button.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
+          /     = link_to 'コメント' ,post_path(post)
+
+          .p-6.bg-white.border-b.border-gray-400.text-left
               / a.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
               - if user_signed_in?
                 - if post.liked_by?(current_user)
@@ -32,39 +50,23 @@
                 - else 
                   td= link_to 'きになる', post_likes_path(post.id), method: :post
                   td= post.likes.count
-          .p-6.bg-white.border-gray-400.text-center
-            | お店の詳細（Hotペッパーのサイトに飛ぶ）
-          .p-6.bg-white.text-right.border-b.border-gray-400
-            button.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
-              = link_to 'コメント' ,post_path(post)
+                .text-center
+                  | お店の詳細（Hotペッパーのサイトに飛ぶ）
+                .text-right
+                  button.bg-blue-500.shadow-md.text-sm.text-white.font-bold.py-3.md:px-8.px-4.hover:bg-blue-400.rounded.uppercase[href="#"]
+                    = link_to 'コメント' ,post_path(post)
+          / .p-6.bg-white.border-gray-400
+            
+          / .p-6.bg-white.text-right.border-b.border-gray-400
 
 
-      / .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-10.mb-4.max-w-lg
-      /   .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-10
-      /       - @posts.each do |post|
-      /         .table-fixed
-      /           .flex.flex-wrap.-mx-3.mb-6
-      /             tr
-      /               td= link_to post.body ,post_path(post)
-      /               td= post.visit_day
-      /               - if user_signed_in?
-      /                 - if post.liked_by?(current_user)
-      /                   td= link_to 'いいね済み', post_likes_path(post.id), method: :delete
-      /                   td= post.likes.count
-      /                 - else 
-      /                   td= link_to 'いいね', post_likes_path(post.id), method: :post
-      /                   td= post.likes.count
-      /               td
-      /               - if current_user.id == post.user_id
-      /                 button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
-      /                   = link_to '編集', edit_post_path(post)
-      /                 button.bg-red-500.hover:bg-red-700.text-white.font-bold.py-2.px-4.rounded
-      /                   = link_to '削除', post, method: :delete, remote: true, data: { confirm: "投稿を削除します。よろしいですか？" }
+
+
                         
       / = render partial: 'shared/tag'
               
 
-      / .p-2.text-center.text-s.px-4.pt-20
-      /   p Copyrighit(C) 2020 Oicey co.ltb   ぐるナビAPI
+      .p-2.text-center.text-s.px-4.pt-20
+        p Copyrighit(C) 2020 Oicey co.ltb   ぐるナビAPI
     = render partial: 'shared/side'
 = render partial: 'shared/fotter'
