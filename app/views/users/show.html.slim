@@ -5,6 +5,11 @@
       .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-8.mb-4.max-w-lg
         .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-2
           .flex.flex-wrap.-mx-3.mb-6
+              
+            - if @user.profile_image? 
+              br = image_tag @user.profile_image.url
+            - else
+              = image_tag "noimage.png"
             
             br = @user.name
             br

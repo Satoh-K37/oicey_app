@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     # サインアップ時にoicey_idとnameのストロングパラメータを追加
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     # アカウント編集の時にoicey_idとnameとself_introductionのストロングパラメータを追加
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :self_introduction])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :self_introduction, :profile_image, :profile_image_cacche, :remove_plofile_image])
   end
 
   # def current_user

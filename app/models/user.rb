@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # モデルとアップローダーの紐付け
+  mount_uploader :profile_image, ProfileImageUploader
 
   devise :database_authenticatable, :registerable,
         # :confirmable,(登録時に確認用のメールを送ってくれるが今のところ邪魔なのでコメントアウト)

@@ -1,4 +1,10 @@
-.check_box
-  = form_for @group do |f|
-    = f.collection_check_boxes(:user_ids, User.all, :id, :name) do |b|
-      = b.label { b.check_box + b.text }
+.circle-avatar
+  - if current_user.persisted? && current_user.avatar?
+    = image_tag current_user.avatar.to_s
+    label
+      = f.check_box :remove_avatar
+      |  画像を削除
+  - else
+    = image_tag 'no_avatar.png'
+    = f.hidden_field :avatar_cache
+  = f.file_field :avatar
