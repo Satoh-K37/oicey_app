@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     # タグ一覧表示(もっとも使われているタグを10個まで表示する)
     @tags = Post.tag_counts_on(:tags).most_used(10)
+
   end
 
   def show
