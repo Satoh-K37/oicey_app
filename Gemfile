@@ -78,6 +78,10 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 # タグ機能
 gem 'acts-as-taggable-on', '~> 7.0'
-# 
+# Active_Recordのように読み込み専用情報をまとめたハッシを使えるようにできる
 gem 'active_hash'
+# 画像投稿
+gem 'carrierwave'
+# 画像リサイズで使う
+gem 'rmagick'
 ############ Back end ############
