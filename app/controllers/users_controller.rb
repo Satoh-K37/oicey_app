@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @relationship = current_user.relationships.find_by(follow_id: @user.id)  
     @set_relationship = current_user.relationships.new
     # 自身の投稿一覧
-    @myposts = current_user.posts.all
+    @myposts = @user.posts.all
     # ユーザーがいいねした投稿を取得
     @like_posts = @user.like_posts
     @rooms = @user.rooms
