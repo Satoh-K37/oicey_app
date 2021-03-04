@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_093624) do
+ActiveRecord::Schema.define(version: 2021_03_04_173010) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_093624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.string "images"
+    t.json "images"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
