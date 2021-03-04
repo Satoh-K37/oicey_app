@@ -50,6 +50,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  # def configure_permitted_parameters
+  #   # サインアップ時にoicey_idとnameのストロングパラメータを追加（現在Oicey_idはなし）
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  #   # アカウント編集の時にoicey_idとnameとself_introduction、profile_image、profile_image_cacche、remove_plofile_imageのストロングパラメータを追加
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:name, :self_introduction, :profile_image, :profile_image_cacche, :remove_plofile_image])
+  # end
+
   protected
 
 
@@ -68,6 +75,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
     devise_parameter_sanitizer.permit(:account_update, keys: [id: current_user.id])
+  end
+
+  def configure_permitted_parameters
+    # サインアップ時にoicey_idとnameのストロングパラメータを追加（現在Oicey_idはなし）
+    # devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    # アカウント編集の時にoicey_idとnameとself_introduction、profile_image、profile_image_cacche、remove_plofile_imageのストロングパラメータを追加
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :self_introduction, :profile_image, :profile_image_cacche, :remove_plofile_image])
   end
 
   # The path used after sign up.

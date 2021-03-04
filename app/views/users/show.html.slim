@@ -9,7 +9,7 @@
             - if @user.profile_image? 
               br = image_tag @user.profile_image.url
             - else
-              = image_tag "noimage.png"
+              = image_tag '/no_profile_image.jpeg'
             
             br = @user.name
             br

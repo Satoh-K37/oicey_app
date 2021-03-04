@@ -4,15 +4,15 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
 
   # S3にアップロードする場合
-  # if Rails.env.production? || Rails.env.staging?
-  #   storage :fog
-  # else
-  #   storage :file
-  # end
+  if Rails.env.production? || Rails.env.staging?
+    storage :fog
+  else
+    storage :file
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -59,7 +59,13 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # 保存するファイルの命名規則
   def filename
-    "something.jpg" if original_filename
+    # "something.jpg" if original_filename
+    # 日付でファイルを作成
+    if original_filename.present?
+      time = Time.now
+      name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
+      name.downcase
+    end
   end
 
   protected
@@ -68,5 +74,5 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
-  
+
 end
