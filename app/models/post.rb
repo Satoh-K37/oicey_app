@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  mount_uploaders :images, ProfileImageUploader
   # belongs_to_active_hash :legend
   belongs_to :user
   has_many :likes

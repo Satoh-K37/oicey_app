@@ -2,12 +2,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit,:destroy]
 
   def index
+    
     # ログインしているユーザーの投稿のみを表示する
     # @posts = current_user.posts.all
     @posts = Post.all
     # タグ一覧表示(もっとも使われているタグを10個まで表示する)
     @tags = Post.tag_counts_on(:tags).most_used(10)
 
+    # @post = Post.find(params[:id])
+    @post_tags = @posts.tag_counts_on(:tags)
   end
 
   def show
@@ -66,7 +69,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:platform_name, :voicechatstyle, :body, :visit_day, :picklegend, :tag_list)
+    params.require(:post).permit(:body, :visit_day, :tag_list, { images:[] })
   end
 
 end
