@@ -83,5 +83,6 @@ gem 'active_hash'
 # 画像投稿
 gem 'carrierwave'
 # 画像リサイズで使う
-gem 'rmagick'
+gem "mini_magick"
+# gem 'rmagick'
 ############ Back end ############
