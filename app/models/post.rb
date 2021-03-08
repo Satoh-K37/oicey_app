@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  mount_uploaders :images, ProfileImageUploader
+  mount_uploaders :images, ImagesUploader
   # belongs_to_active_hash :legend
   belongs_to :user
   has_many :likes
@@ -8,11 +8,19 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
   
+  ##### 複数画像投稿 #####
+  # has_many :post_files, dependent: :destroy
+  # accepts_nested_attributes_for :post_files
+  has_many :images, dependent: :destroy
+  accepts_nested_attributes_for :images
+  # , allow_destroy: true
+  #######################
 
   ##### タグ機能 #####
   # acts_as_taggable
   acts_as_ordered_taggable_on :tags
   acts_as_taggable_on :skills, :interests
+  #######################
 
   ##### バリデーション #####
   # 現状は本文を必須にしてるけど、画像投稿機能を実装したら画像か本文のどちらかが投稿されてればOKって感じにしたい
