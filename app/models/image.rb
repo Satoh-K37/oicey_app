@@ -1,4 +1,4 @@
 class Image < ApplicationRecord
-  mount_uploaders :url, ImagesUploader
-  belongs_to :post,optional: true
+  belongs_to :post, dependent: :destroy
+  mount_uploader :url, ImagesUploader
 end

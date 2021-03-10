@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  mount_uploaders :images, ImagesUploader
+  # mount_uploaders :images, ImagesUploader
   # belongs_to_active_hash :legend
-  belongs_to :user
-  has_many :likes
+  belongs_to :user, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :users, through: :likes
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
@@ -12,12 +12,11 @@ class Post < ApplicationRecord
   # has_many :post_files, dependent: :destroy
   # accepts_nested_attributes_for :post_files
   has_many :images, dependent: :destroy
-  accepts_nested_attributes_for :images
-  # , allow_destroy: true
+  accepts_nested_attributes_for :images, allow_destroy: true
   #######################
 
   ##### タグ機能 #####
-  # acts_as_taggable
+  # acts_as_taggable　d
   acts_as_ordered_taggable_on :tags
   acts_as_taggable_on :skills, :interests
   #######################
@@ -26,6 +25,8 @@ class Post < ApplicationRecord
   # 現状は本文を必須にしてるけど、画像投稿機能を実装したら画像か本文のどちらかが投稿されてればOKって感じにしたい
   validates :body, presence: true ,length:  { maximum: 1000 }
   #######################
+
+
 
   # いいねされているか確認する条件式で使う。
   def liked_by?(user)
