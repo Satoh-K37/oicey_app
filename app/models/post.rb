@@ -12,7 +12,9 @@ class Post < ApplicationRecord
   # has_many :post_files, dependent: :destroy
   # accepts_nested_attributes_for :post_files
   has_many :images, dependent: :destroy
-  accepts_nested_attributes_for :images, allow_destroy: true
+  # , foreign_key: 'post_id'
+  accepts_nested_attributes_for :images
+  # , allow_destroy: true
   #######################
 
   ##### タグ機能 #####

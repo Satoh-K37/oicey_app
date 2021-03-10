@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     # postのidを取ってくるためにネストしている
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
+    # resource :images, only: [:new, :create, :destroy]
   end
 
   
