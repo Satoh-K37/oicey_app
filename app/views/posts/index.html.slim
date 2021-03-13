@@ -11,18 +11,21 @@
             .p-6.bg-white.border-b.border-gray-400
                 .flex.flex-wrap.-mx-3.mb-6
                   = link_to post.user.name, profile_user_path(post.user.id)
-                - post.images.each do |image|
-                  = image_tag image.url.to_s
+                - post.images.each do |img|
+                  = image_tag img.url.to_s
                 .table-fixed
                   .flex.flex-wrap.-mx-3.mb-6
                     tr
                       td= link_to post.body ,post_path(post)
                       td
+                      
                       - if current_user.id == post.user_id
+                        br
                         button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
                           = link_to '編集', edit_post_path(post)
+                        br
                         button.bg-red-500.hover:bg-red-700.text-white.font-bold.py-2.px-4.rounded
-                          = link_to '削除', post, method: :delete, remote: true, data: { confirm: "投稿を削除します。よろしいですか？" }
+                          = link_to '削除', post, remote: true, method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" }
                   .flex.flex-wrap.-mx-3.mb-6
                 / - @mytags.each do |tag|
                 /   td.border.border-green-600
@@ -64,7 +67,7 @@
 
 
                         
-      = render partial: 'shared/tag'
+      / = render partial: 'shared/tag'
               
 
       .p-2.text-center.text-s.px-4.pt-20

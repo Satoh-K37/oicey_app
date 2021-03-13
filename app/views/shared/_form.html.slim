@@ -3,7 +3,7 @@ br
   .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-2
     .flex.flex-wrap.-mx-3.mb-6
       .max-w-2xl.mx-auto.sm:px-6.lg:px-8
-        = form_with model: @post, local: true, class: "form", id: "post-form"  do |f|
+        = form_with model: @post, local: true, class: "form",  id: "product-form-edit"  do |f|
           br
           = link_to '←', :back
           .overflow-hidden.shadow-md
@@ -32,8 +32,7 @@ br
                       .form-input
                         =f.label :tag_list
                       .bg-gray-100.rounded.border.border-gray-400.leading-normal.resize-none.w-full.h-20.py-2.px-3.font-medium.placeholder-gray-700.focus:outline-none.focus:bg-white
-                        =f.text_field :tag_list, value: @post.tag_list.join(','), placeholder:"ここだけはガチ,うまい,美味しい"
-                        / , class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                        =f.text_field :tag_list, value: @post.tag_list.join(','), placeholder:"ここだけはガチ,うまい,美味しい", class: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-15 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
                         
                       .form-input
                         =f.label 'ジャンル'
@@ -42,41 +41,32 @@ br
                       .form-input
                         =f.label 'Map'
                       .form-input
-                        = f.label :images
-                        / / @postの中に画像が入っていた場合は保存された画像を表示させる
-                        / - if @post.images.url?
-                        /   - @post.images.url.each do |image|
-                        /     = image_tag image.url
-                                              
-                      .form-input
-                        = f.fields_for :images do |img|
-                          = img.file_field :url, multiple: true, name: "images[url][]"
-                        / = f.file_field :images, multiple: true, type: 'file'
-                        / = f.hidden_field :image_cache
-                        
-                      / .form-image
-                      /   .form-image__title
-                      /     = f.label :images
-                      /     .form-image__text 
-                      /       | 最大10枚までアップロードできます
-                      /     = f.fields_for :images do |image|
-                      /       .clearfix
-                      /         / 写真のプレビューとインプットボタンのul
-                      /         ul.previews
-                      /           li.input
-                      /             / 画像を取り込むインプットボタン
-                      /             label.upload-label
-                      /               .upload-label__text
-                      /               | ドラッグアンドドロップ
-                      /               br
-                      /               | またはクリックしてファイルをアップロード
-                      /               .input-area
-                      /                 = image.file_field :url, class: "hidden image_upload"
-                      / = f.label :images
-                      / = f.file_field :images, multiple: true
-                      / = f.label :images
-                        / = f.file_field :url , multiple: true, name: "images[url][]"
-                        / , class: "hidden image_upload"
+                        / @postの中に画像が入っていた場合は保存された画像を表示させる
+                        - if @post.images.present?
+                          = f.label :images, '既存画像'
+                          - @post.images.each do |img|
+                            = image_tag img.url.to_s
+                      
+                      .form-image
+                        .form-image__title
+                          = f.label :images, '画像'
+                          .form-image__text 
+                            | 最大10枚までアップロードできます
+                          .clearfix
+                            / 写真のプレビューとインプットボタンのul
+                            ul.previews
+                          = f.fields_for :images do |image|
+                            - @post.images.each_with_index do |img, i|
+                              li.image-preview
+                                / 画像を取り込むインプットボタン
+                                label.upload-label
+                                  .upload-label__text
+                                  | ドラッグアンドドロップ
+                                  br
+                                  | またはクリックしてファイルをアップロード
+                                  .input-area
+                                    = image.file_field :url, value: img.url, class: "hidden image_upload"
+                                    = image.hidden_field :id, value: img.id, name:"product[image][#{i}]"
 
           .-mr-2.px-4.pt-4.pb-5.text-left
             =f.label '行った日'

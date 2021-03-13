@@ -7,7 +7,7 @@
           .flex.flex-wrap.-mx-3.mb-6
               
             - if @user.profile_image? 
-              br = image_tag @user.profile_image.url
+              br = image_tag @user.profile_image.to_s
             - else
               = image_tag 'no_profile_image.jpeg'
             

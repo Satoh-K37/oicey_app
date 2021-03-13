@@ -3,7 +3,7 @@
     main.col-span-5.bg-gray-100
       .flex.mx-auto.items-center.justify-center.shadow-lg.mt-100.mx-8.mb-4.max-w-lg
         .w-full.max-w-xl.bg-white.rounded-lg.px-4.pt-2
-          = link_to '←', :back
+          = link_to '←', posts_url
           h1.text-center
             | 募集詳細
             br
@@ -55,7 +55,7 @@
             button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded
               = link_to '編集',  edit_post_path
             button.bg-red-500.hover:bg-red-700.text-white.font-bold.py-2.px-4.rounded
-              = link_to '削除', @post, method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" }
+              = link_to '削除', @post, remote: true, method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" }
             br
           - if user_signed_in?
             - if @post.liked_by?(current_user)
