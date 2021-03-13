@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   # mount_uploaders :images, ImagesUploader
   # belongs_to_active_hash :legend
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
   has_many :comments, dependent: :destroy
@@ -11,16 +11,16 @@ class Post < ApplicationRecord
   ##### 複数画像投稿 #####
   # has_many :post_files, dependent: :destroy
   # accepts_nested_attributes_for :post_files
-  has_many :images, dependent: :destroy
-  # , foreign_key: 'post_id'
+  has_many :images #, dependent: :destroy , foreign_key: 'post_id'
   accepts_nested_attributes_for :images
   # , allow_destroy: true
   #######################
 
   ##### タグ機能 #####
-  # acts_as_taggable　d
-  acts_as_ordered_taggable_on :tags
-  acts_as_taggable_on :skills, :interests
+  # 原因調査のため一番怪しいこいつらを機能停止させる。これで削除ができていた場合タグが原因ということになる。
+  # acts_as_taggabled
+  # acts_as_ordered_taggable_on :tags, dependent: :destroy
+  # acts_as_taggable_on :skills, :interests
   #######################
 
   ##### バリデーション #####
