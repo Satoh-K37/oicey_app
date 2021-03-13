@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   # mount_uploaders :images, ImagesUploader
   # belongs_to_active_hash :legend
   belongs_to :user
-  has_many :likes, dependent: :destroy
+  has_many :likes
   has_many :users, through: :likes
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
@@ -19,8 +19,8 @@ class Post < ApplicationRecord
   ##### タグ機能 #####
   # 原因調査のため一番怪しいこいつらを機能停止させる。これで削除ができていた場合タグが原因ということになる。
   # acts_as_taggabled
-  # acts_as_ordered_taggable_on :tags, dependent: :destroy
-  # acts_as_taggable_on :skills, :interests
+  acts_as_ordered_taggable_on :tags
+  acts_as_taggable_on :skills, :interests
   #######################
 
   ##### バリデーション #####
