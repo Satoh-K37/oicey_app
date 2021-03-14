@@ -107,7 +107,7 @@ class PostsController < ApplicationController
   def destroy
     
     @post.destroy
-    # binding.pry
+    # head :no_content #Ajax用の記述
     redirect_to profile_user_url(@post.user.id), notice: "投稿を削除しました" 
     # redirect_to posts_url, notice: "投稿を削除しました" 
   end
