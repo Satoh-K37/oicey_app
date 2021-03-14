@@ -3,7 +3,9 @@ class Post < ApplicationRecord
   # mount_uploaders :images, ImagesUploader
   # belongs_to_active_hash :legend
   belongs_to :user
-  has_many :likes
+  has_many :likes, dependent: :destroy
+  # 投稿が誰にいいねされているかを取得できる
+  has_many :liked_users, through: :likes, source: :user
   has_many :users, through: :likes
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy

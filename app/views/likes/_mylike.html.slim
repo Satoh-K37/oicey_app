@@ -6,12 +6,10 @@
             td= likespost.visit_day
             - if user_signed_in?
               - if likespost.liked_by?(current_user)
-                
-                td= link_to 'いいね済み', post_likes_path(likespost.id), method: :delete
+                td= button_to 'いいね済み', post_likes_path(likespost.id), method: :delete, remote: true
                 td= likespost.likes.count
               - else
-                
-                td= link_to 'いいね', post_likes_path(likespost.id), method: :post
+                td= button_to 'いいね', post_likes_path(likespost.id), method: :post, remote: true
                 td= likespost.likes.count
             td                
             td
